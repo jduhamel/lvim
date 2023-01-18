@@ -26,8 +26,8 @@ lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy status
 lvim.builtin.fancy_wild_menu = { active = true } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = true } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = false } -- change this to enable/disable folke/lua_dev
-lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
-lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
+lvim.builtin.test_runner = { active = true, runner = "neotest" } -- change this to enable/disable ultest or neotest
+lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "neoscroll" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
@@ -69,9 +69,9 @@ lvim.builtin.indentlines.active = true
 lvim.builtin.noice = { active = true } -- enables noice.nvim and inc-rename.nvim
 lvim.builtin.go_programming = { active = true } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = true } -- swenv.nvim + nvim-dap-python + requirements.txt.vim
-lvim.builtin.web_programming = { active = false } -- typescript.nvim + package-info.nvim
+lvim.builtin.web_programming = { active = true } -- typescript.nvim + package-info.nvim
 lvim.builtin.rust_programming = { active = false } -- rust_tools.nvim + crates.nvim
-lvim.builtin.cpp_programming = { active = false } -- clangd_extensions.nvim + make-tools.nvim
+lvim.builtin.cpp_programming = { active = true } -- clangd_extensions.nvim + make-tools.nvim
 lvim.builtin.cmp.cmdline.enable = true
 lvim.builtin.borderless_cmp = false
 lvim.builtin.colored_args = false -- if true then sets up hlargs.nvim

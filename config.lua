@@ -26,3 +26,5 @@ reload "user.scrollbar"
 -- reload "user.zk"
 reload "user.chatgpt"
 reload "user.whichkey"
+
+lvim.colorscheme = "gotham256"

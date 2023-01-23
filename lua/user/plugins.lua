@@ -75,6 +75,11 @@ lvim.plugins = {
   },
   { "tzachar/cmp-tabnine", build = "./install.sh" },
   {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+  }
+  {
     "zbirenbaum/copilot.lua",
     -- event = { "VimEnter" },
     config = function()

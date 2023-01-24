@@ -44,6 +44,38 @@ lvim.plugins = {
   "petertriho/nvim-scrollbar",
   "renerocksai/telekasten.nvim",
   -- "renerocksai/calendar-vim",
+  -- JSD Plugins -- 
+  {
+    "danymat/neogen",
+    lazy = true,
+    config = function()
+      require("neogen").setup {
+        enabled = true,
+      }
+    end,
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "nvim-neotest/neotest",
+    config = function ()
+      require("user.neotest").config()
+    end,
+    dependencies = {
+      { "nvim-neotest/neotest-plenary" },
+    },
+    event = { "BufReadPost", "BufNew"},
+    enabled = true
+  },
+  { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
+  { "nvim-neotest/neotest-py", event = { "BufEnter *.py" } },
+  {
+    "akinsho/flutter-tools.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("user.flutter_tools").config()
+    end,
+    ft = "dart",
+  },
   {
     "saecki/crates.nvim",
     version = "v0.3.0",
@@ -74,11 +106,6 @@ lvim.plugins = {
     build = "cd js && npm ci",
   },
   { "tzachar/cmp-tabnine", build = "./install.sh" },
-  {
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true,
-  }
   {
     "zbirenbaum/copilot.lua",
     -- event = { "VimEnter" },

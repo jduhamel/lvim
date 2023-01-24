@@ -2,6 +2,7 @@
 lvim.plugins = {
   "ellisonleao/gruvbox.nvim",
   "LunarVim/synthwave84.nvim",
+  "rafi/awesome-vim-colorschemes",
   "roobert/tailwindcss-colorizer-cmp.nvim",
   "lunarvim/github.nvim",
   "nvim-treesitter/playground",
@@ -45,6 +46,21 @@ lvim.plugins = {
   "renerocksai/telekasten.nvim",
   -- "renerocksai/calendar-vim",
   -- JSD Plugins -- 
+    -- not sure why trouble isn't here... 
+  {
+    "folke/trouble.nvim",
+    config = function()
+      require("trouble").setup {
+        auto_open = false,
+        auto_close = true,
+        padding = false,
+        height = 10,
+        use_diagnostic_signs = true,
+      }
+    end,
+    event = "VeryLazy",
+    cmd = "Trouble"
+  },
   {
     "danymat/neogen",
     lazy = true,
@@ -66,6 +82,7 @@ lvim.plugins = {
     event = { "BufReadPost", "BufNew"},
     enabled = true
   },
+  { "rouge8/neotest-rust", event = { "BufEnter *rs" } }, 
   { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
   { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
   {
@@ -76,6 +93,27 @@ lvim.plugins = {
     end,
     ft = "dart",
   },
+  {
+  "stevearc/overseer.nvim",
+  config = function()
+      require("user.overseer").config()
+    end,
+    enabled = lvim.builtin.task_runner == "overseer"
+  },
+  {
+    "skywind3000/asynctasks.vim",
+    dependencies = "skywind3000/asyncrun.vim", 
+    init = function()
+    vim.cmd [[
+        let g:asyncrun_open = 8
+        let g:asynctask_template = '~/.config/lvim/task_template.ini'
+        let g:asyuntasks_extra_config = "~/.config/lvim/tasks.ini"
+    ]]
+    end,
+    event = { "BufRead", "BufNew"},
+    enabled = lvim.builtin.task_runner == "async_tasks"
+  },
+  -- End JSD plugins / changes
   {
     "saecki/crates.nvim",
     version = "v0.3.0",

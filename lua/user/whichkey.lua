@@ -1,5 +1,8 @@
-lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" }
-lvim.builtin.which_key.mappings["v"] = { "<cmd>vsplit<cr>", "vsplit" }
+
+
+lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<CR>", " Add Mark" }
+lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "﩯Buffer"}
+lvim.builtin.which_key.mappings["v"] = { "<cmd>vsplit<cr>", "| vsplit" }
 lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<cr>", "nohl" }
 lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" }
 lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" }
@@ -152,11 +155,46 @@ lvim.builtin.which_key.mappings["n"] = {
   t = { "<cmd>Telekasten toggle_todo<cr>", "Toggle Todo" },
 }
 
-lvim.builtin.which_key.mappings[";"] = nil
+if lvim.builtin.task_runner == "async_tasks" then
+  lvim.builtin.which_key.mappings["m"] = {
+    name = " Make",
+    f = { "<cmd>AsyncTask file-build<cr>", "File" },
+    p = { "<cmd>AsyncTask project-build<cr>", "Project" },
+    e = { "<cmd>AsyncTaskEdit<cr>", "Edit" },
+    l = { "<cmd>AsyncTaskList<cr>", "List" },
+  }
+  lvim.builtin.which_key.mappings["r"] = {
+    name = " Run",
+    f = { "<cmd>AsyncTask file-run<cr>", "File" },
+    p = { "<cmd>AsyncTask project-run<cr>", "Project" },
+  }
+elseif lvim.builtin.task_runner == "overseer" then
+  lvim.builtin.which_key.mappings["m"] = {
+    name = " Tasks",
+    l = { "<cmd>OverseerLoadBundle<CR>", "Load Bundle" },
+    s = { "<cmd>OverseerSaveBundle<CR>", "Save Bundle" },
+    n = { "<cmd>OverseerBuild<CR>", "New Task" },
+    q = { "<cmd>OverseerQuickAction<CR>", "Quick Action" },
+    f = { "<cmd>OverseerTaskAction<CR>", "Task Action" },
+    t = { "<cmd>OverseerToggle<cr>", "Toggle Output" },
+  }
+  lvim.builtin.which_key.mappings["r"] = {
+    name = " Run",
+    f = { "<cmd>OverseerRun<cr>", "Run" },
+    p = { "<cmd>OverseerRunCmd<cr>", "Run with Cmd" },
+    t = { "<cmd>OverseerToggle<cr>", "Toggle" },
+  }
+else
+  lvim.builtin.which_key.mappings["m"] = "Make"
+  lvim.builtin.which_key.mappings["r"] = "Run"
+  require("user.autocommands").make_run()
+end
+
+-- lvim.builtin.which_key.mappings[";"] = nil
 -- lvim.builtin.which_key.mappings["c"] = nil
-lvim.builtin.which_key.mappings["L"] = nil
-lvim.builtin.which_key.mappings["s"] = nil
-lvim.builtin.which_key.mappings["w"] = nil
+-- lvim.builtin.which_key.mappings["L"] = nil
+-- lvim.builtin.which_key.mappings["s"] = nil
+-- lvim.builtin.which_key.mappings["w"] = nil
 
 local m_opts = {
   mode = "n", -- NORMAL mode
@@ -184,10 +222,10 @@ local m_mappings = {
   s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
   k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
   S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
-  -- s = {
-  --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-  --   "Show",
-  -- },
+  s = {
+     "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
+     "Show",
+   },
   x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
   [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }

@@ -1,4 +1,3 @@
-
 local M = {}
 
 M.config = function()
@@ -42,7 +41,7 @@ M.config = function()
       border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
     },
     adapters = {
---      require "neotest-rust",
+      require "neotest-rust",
       require "neotest-go" {
         experimental = {
           test_table = true,

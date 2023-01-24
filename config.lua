@@ -1,3 +1,10 @@
+lvim.leader = " "
+lvim.log.level = "warn"
+
+
+-- Set some toggleable plugins. 
+lvim.builtin.task_runner = "overseer" -- options are blank, async_tasks or overseer
+
 reload "user.plugins"
 reload "user.options"
 reload "user.keymaps"
@@ -27,4 +34,3 @@ reload "user.scrollbar"
 reload "user.chatgpt"
 reload "user.whichkey"
 
-lvim.colorscheme = "gotham256"

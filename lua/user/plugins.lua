@@ -67,7 +67,7 @@ lvim.plugins = {
     enabled = true
   },
   { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
-  { "nvim-neotest/neotest-py", event = { "BufEnter *.py" } },
+  { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
   {
     "akinsho/flutter-tools.nvim",
     dependencies = "nvim-lua/plenary.nvim",

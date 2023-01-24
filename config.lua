@@ -1,6 +1,7 @@
 lvim.leader = " "
 lvim.log.level = "warn"
-
+vim.g.python_host_prog = '/usr/bin/python'
+vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- Set some toggleable plugins. 
 lvim.builtin.task_runner = "overseer" -- options are blank, async_tasks or overseer
@@ -30,6 +31,7 @@ reload "user.neogit"
 reload "user.colorizer"
 reload "user.lualine"
 reload "user.scrollbar"
+reload "user.bufferline"
 -- reload "user.zk"
 reload "user.chatgpt"
 reload "user.whichkey"

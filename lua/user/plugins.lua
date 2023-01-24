@@ -46,7 +46,15 @@ lvim.plugins = {
   "renerocksai/telekasten.nvim",
   -- "renerocksai/calendar-vim",
   -- JSD Plugins -- 
-    -- not sure why trouble isn't here... 
+    -- not sure why trouble isn't here...
+  {
+    "Olical/conjure",
+    config = function()
+      require("user.conjure").config()
+    end,
+    enabled = true,
+    lazy = true,
+  },
   {
     "folke/trouble.nvim",
     config = function()

@@ -1,18 +1,18 @@
-if lvim.colorscheme == "darkplus" then
-	lvim.builtin.treesitter.rainbow = {
-		enable = true,
-		extended_mode = false,
-		colors = {
-			"DodgerBlue",
-			"Orchid",
-			"Gold",
-		},
-		disable = { "html" },
-	}
-end
+lvim.builtin.treesitter.rainbow = {
+  enable = true,
+  extended_mode = true,
+--		colors = {
+    -- "DodgerBlue",
+    -- "Orchid",
+    -- "Gold",
+  -- },
+  disable = { "html" },
+}
 
-lvim.builtin.treesitter.ensure_installed = "all"
+lvim.builtin.treesitter.ensure_installed = { "go", "javascript", "python", "rust", "clojure" }
 lvim.builtin.treesitter.autotag.enable = true
+lvim.builtin.treesitter.auto_install = false
+lvim.builtin.treesitter.ignore_install = { "markdown" }
 
 lvim.builtin.treesitter.textobjects = {
 	select = {

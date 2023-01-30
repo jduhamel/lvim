@@ -1,4 +1,5 @@
 lvim.leader = " "
+lvim.localleader = ","
 lvim.log.level = "warn"
 vim.g.python_host_prog = '/usr/bin/python'
 vim.g.python3_host_prog = '/usr/bin/python3'

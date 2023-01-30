@@ -53,7 +53,6 @@ lvim.plugins = {
       require("user.conjure").config()
     end,
     enabled = true,
-    lazy = true,
   },
   {
     "folke/trouble.nvim",

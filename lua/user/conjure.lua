@@ -57,9 +57,9 @@ M.config = function()
     vim.api.nvim_feedkeys(":ConjureConnect localhost:", "n", false)
   end
 
-  local mappings = require "users.portal-mappings"
+  local mappings = require "user.portal-mappings"
   local wk = require "which-key"
-  local repl = require "users.nrepl-finder"
+  local repl = require "user.nrepl-finder"
 
   wk.register(mappings, { prefix = "<localleader>" })
   wk.register({

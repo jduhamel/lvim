@@ -36,7 +36,8 @@ lvim.plugins = {
   "nacro90/numb.nvim",
   "TimUntersberger/neogit",
   "sindrets/diffview.nvim",
-  "simrat39/rust-tools.nvim",
+  "simrat39/rust-tools.nvim", --  "olexsmir/gopher.nvim",
+  --  "ray-x/go.nvim",
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
   "mfussenegger/nvim-dap-python",
@@ -45,14 +46,20 @@ lvim.plugins = {
   "petertriho/nvim-scrollbar",
   "renerocksai/telekasten.nvim",
   -- "renerocksai/calendar-vim",
-  -- JSD Plugins -- 
-    -- not sure why trouble isn't here...
+  -- JSD Plugins --
+  -- not sure why trouble isn't here...
   {
     "Olical/conjure",
     config = function()
       require("user.conjure").config()
     end,
     enabled = true,
+  },
+  {
+    "andythigpen/nvim-coverage",
+    config = function()
+      require("coverage").setup()
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -66,30 +73,26 @@ lvim.plugins = {
       }
     end,
     event = "VeryLazy",
-    cmd = "Trouble"
+    cmd = "Trouble",
   },
   {
     "danymat/neogen",
     lazy = true,
     config = function()
-      require("neogen").setup {
-        enabled = true,
-      }
+      require("neogen").setup { enabled = true }
     end,
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "nvim-neotest/neotest",
-    config = function ()
+    config = function()
       require("user.neotest").config()
     end,
-    dependencies = {
-      { "nvim-neotest/neotest-plenary" },
-    },
-    event = { "BufReadPost", "BufNew"},
-    enabled = true
+    dependencies = { { "nvim-neotest/neotest-plenary" } },
+    event = { "BufReadPost", "BufNew" },
+    enabled = true,
   },
-  { "rouge8/neotest-rust", event = { "BufEnter *rs" } }, 
+  { "rouge8/neotest-rust", event = { "BufEnter *rs" } },
   { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
   { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
   {
@@ -101,36 +104,32 @@ lvim.plugins = {
     ft = "dart",
   },
   {
-  "stevearc/overseer.nvim",
-  config = function()
+    "stevearc/overseer.nvim",
+    config = function()
       require("user.overseer").config()
     end,
-    enabled = lvim.builtin.task_runner == "overseer"
+    enabled = lvim.builtin.task_runner == "overseer",
   },
   {
     "skywind3000/asynctasks.vim",
-    dependencies = "skywind3000/asyncrun.vim", 
+    dependencies = "skywind3000/asyncrun.vim",
     init = function()
-    vim.cmd [[
+      vim.cmd [[
         let g:asyncrun_open = 8
         let g:asynctask_template = '~/.config/lvim/task_template.ini'
         let g:asyuntasks_extra_config = "~/.config/lvim/tasks.ini"
     ]]
     end,
-    event = { "BufRead", "BufNew"},
-    enabled = lvim.builtin.task_runner == "async_tasks"
-  },
-  -- End JSD plugins / changes
+    event = { "BufRead", "BufNew" },
+    enabled = lvim.builtin.task_runner == "async_tasks",
+  }, -- End JSD plugins / changes
   {
     "saecki/crates.nvim",
     version = "v0.3.0",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("crates").setup {
-        null_ls = {
-          enabled = true,
-          name = "crates.nvim",
-        },
+        null_ls = { enabled = true, name = "crates.nvim" },
       }
     end,
   },
@@ -139,17 +138,12 @@ lvim.plugins = {
   {
     "jinh0/eyeliner.nvim",
     config = function()
-      require("eyeliner").setup {
-        highlight_on_key = true,
-      }
+      require("eyeliner").setup { highlight_on_key = true }
     end,
   },
   { "christianchiarulli/telescope-tabs", branch = "chris" },
   "monaqa/dial.nvim",
-  {
-    "0x100101/lab.nvim",
-    build = "cd js && npm ci",
-  },
+  { "0x100101/lab.nvim", build = "cd js && npm ci" },
   { "tzachar/cmp-tabnine", build = "./install.sh" },
   {
     "zbirenbaum/copilot.lua",

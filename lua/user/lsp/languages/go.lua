@@ -33,6 +33,11 @@ lsp_manager.setup("gopls", {
   },
 })
 
+-- local ray_go_ok, raygo = pcall(require, "go")
+-- if ray_go_ok then
+-- raygo.setup()
+-- end
+
 local status_ok, gopher = pcall(require, "gopher")
 if not status_ok then
   return
@@ -47,6 +52,8 @@ gopher.setup {
     iferr = "iferr",
   },
 }
+
+require("gopher.dap").setup()
 
 ------------------------
 -- Language Key Mappings

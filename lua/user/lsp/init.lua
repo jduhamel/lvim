@@ -11,6 +11,8 @@ lvim.lsp.diagnostics.virtual_text = false
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "java",
+  "go",
+  "gomod"
 }
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
@@ -21,7 +23,12 @@ formatters.setup {
   { command = "stylua", filetypes = { "lua" } },
   { command = "shfmt", filetypes = { "sh", "zsh" } },
   { command = "prettier", filetypes = { "css" } },
+  { command = "goimports", filetypes = { "go" } },
+  { command = "gofumpt", filetypes = { "go" } },
 }
+
+
+lvim.format_on_save = true
 
 -- lvim.lsp.on_attach_callback = function(client, bufnr)
 -- end

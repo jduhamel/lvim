@@ -25,17 +25,17 @@ lvim.builtin.cmp.window.completion = {
   winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
 }
 lvim.builtin.cmp.formatting.source_names = {
-  nvim_lsp = "",
+  nvim_lsp = "LsP",
   emoji = "",
   path = "",
   calc = "",
-  cmp_tabnine = "",
+  cmp_tabnine = "T9",
   vsnip = "",
   luasnip = "",
   buffer = "",
   tmux = "",
-  copilot = "",
-  treesitter = "",
+  copilot = "GH",
+  treesitter = "TS",
 }
 lvim.builtin.cmp.formatting = {
     format = require("tailwindcss-colorizer-cmp").formatter
@@ -53,6 +53,7 @@ local options = {
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
+  maplocalleader = ",",
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   mouse = "a", -- allow the mouse to be used in neovim
@@ -85,7 +86,7 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17", -- the font used in graphical neovim applications
   title = true,
-  -- colorcolumn = "80",
+  colorcolumn = "80",
   -- colorcolumn = "120",
 }
 -- vim.g.loaded_netrw = 1
@@ -113,6 +114,7 @@ vim.filetype.add {
     conf = "dosini",
   },
 }
+require("user.indent_blankline").config()
 
 lvim.builtin.nvimtree.setup.view.mappings.list = {
   { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },

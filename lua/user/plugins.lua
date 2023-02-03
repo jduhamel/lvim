@@ -446,6 +446,7 @@ M.config = function()
     {
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
+    --    { "nvim-telescope/telescope.nvim", dependencies = "tsakirist/telescope-lazy.nvim" },
     { "mtdl9/vim-log-highlighting", ft = { "text", "log" } },
     {
       "yamatsum/nvim-cursorline",
@@ -772,6 +773,8 @@ M.config = function()
       event = "VeryLazy",
       enabled = lvim.builtin.python_programming.active,
     },
+    { "TimUntersberger/neogit" },
+    { "sindrets/diffview.nvim" },
     {
       "phaazon/mind.nvim",
       branch = "v2.2",

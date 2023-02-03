@@ -271,6 +271,7 @@ M.config = function()
   else
     lvim.builtin.which_key.mappings["gh"] = { "<cmd>Telescope git_bcommits<cr>", "file history" }
   end
+  lvim.builtin.which_key.mappings["gG"] = { "<cmd>Neogit<cr>", "Neogit" }
   if lvim.builtin.cheat.active then
     lvim.builtin.which_key.mappings["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" }
   end
@@ -472,6 +473,7 @@ M.config = function()
 end
 
 M.set_mind_keymaps = function()
+  lvim.builtin.which_key.mappings["gg"] = { "<cmd>Neogit<cr>", "Neogit" }
   lvim.builtin.which_key.mappings["M"] = {
     name = " Mind",
     c = {

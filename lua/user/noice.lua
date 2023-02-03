@@ -65,6 +65,7 @@ M.config = function()
       },
     },
     cmdline = {
+      view = "cmdline",
       format = {
         filter = { pattern = "^:%s*!", icon = " ", ft = "sh" },
         IncRename = {

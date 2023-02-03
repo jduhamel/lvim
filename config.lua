@@ -153,3 +153,6 @@ require("user.autocommands").config()
 -- Additional Keybindings
 -- =========================================
 require("user.keybindings").config()
+reload "user.neogit"
+
+-- require("telescope").load_extension "lazy"

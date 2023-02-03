@@ -39,7 +39,12 @@ lvim.plugins = {
   "simrat39/rust-tools.nvim", --  "olexsmir/gopher.nvim",
   --  "ray-x/go.nvim",
   "olexsmir/gopher.nvim",
-  "leoluz/nvim-dap-go",
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup()
+    end,
+  },
   "mfussenegger/nvim-dap-python",
   "jose-elias-alvarez/typescript.nvim",
   "mxsdev/nvim-dap-vscode-js",

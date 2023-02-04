@@ -5,6 +5,7 @@ vim.g.python_host_prog = "/usr/bin/python"
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.maplocalleader = ","
 -- Set some toggleable plugins.
+
 lvim.builtin.task_runner = "overseer" -- options are blank, async_tasks or overseer
 
 reload "user.plugins"

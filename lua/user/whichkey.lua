@@ -1,7 +1,5 @@
-
-
 lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<CR>", " Add Mark" }
-lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "﩯Buffer"}
+lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "﩯Buffer" }
 lvim.builtin.which_key.mappings["v"] = { "<cmd>vsplit<cr>", "| vsplit" }
 lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<cr>", "nohl" }
 lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" }
@@ -88,30 +86,23 @@ lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
   c = { "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<cr>", "Get Capabilities" },
-  -- c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
+  C = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
   d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-  w = {
-    "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-    "Workspace Diagnostics",
-  },
+  e = { "<cmd>Trouble lsp_definitions<cr>", "Definitions"},
+  w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics", },
+  q = { "<cmd>Trouble <quickfixes<cr>", "QuickFix"),}
   f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
   F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
   i = { "<cmd>LspInfo<cr>", "Info" },
   h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
   H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
   I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-  j = {
-    "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-    "Next Diagnostic",
-  },
-  k = {
-    "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-    "Prev Diagnostic",
-  },
+  j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic", },
+  k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Prev Diagnostic", },
   v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
   l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
   o = { "<cmd>SymbolsOutline<cr>", "Outline" },
-  q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+  Q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
   r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
   R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
   s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
@@ -223,9 +214,9 @@ local m_mappings = {
   k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
   S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
   s = {
-     "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-     "Show",
-   },
+    "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
+    "Show",
+  },
   x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
   [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }

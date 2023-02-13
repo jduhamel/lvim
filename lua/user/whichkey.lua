@@ -20,7 +20,7 @@ lvim.builtin.which_key.mappings["c"] = {
   r = { "<cmd>ChatRunCustomCodeAction<cr>", "Code Action" },
 }
 lvim.builtin.which_key.mappings["d"] = {
-  name = "Debug",
+  name = " Debug",
   b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
   c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
   i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
@@ -29,7 +29,9 @@ lvim.builtin.which_key.mappings["d"] = {
   r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
   l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
   u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
+  e = { "<cmd>lua require'dapui'.eval()<cr>", "Eval" },
   x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
+  T = { "<cmd>lua require'dap-go').debug_test()<cr>", "Debug Test" },
 }
 lvim.builtin.which_key.mappings["f"] = {
   name = "Find",
@@ -88,17 +90,17 @@ lvim.builtin.which_key.mappings["l"] = {
   c = { "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<cr>", "Get Capabilities" },
   C = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
   d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-  e = { "<cmd>Trouble lsp_definitions<cr>", "Definitions"},
-  w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics", },
-  q = { "<cmd>Trouble <quickfixes<cr>", "QuickFix"),}
+  e = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+  q = { "<cmd>Trouble <quickfixes<cr>", "QuickFix" },
   f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
   F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
   i = { "<cmd>LspInfo<cr>", "Info" },
   h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
   H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
   I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-  j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic", },
-  k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Prev Diagnostic", },
+  j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic" },
+  k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Prev Diagnostic" },
   v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
   l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
   o = { "<cmd>SymbolsOutline<cr>", "Outline" },
@@ -113,8 +115,8 @@ lvim.builtin.which_key.mappings["l"] = {
   t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
   u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
 }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "Tab",
+lvim.builtin.which_key.mappings["W"] = {
+  name = "Window",
   t = {
     "<cmd>lua require('telescope').extensions['telescope-tabs'].list_tabs(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Tabs'})<cr>",
     "Find Tab",
@@ -128,11 +130,11 @@ lvim.builtin.which_key.mappings["o"] = {
   name = "Options",
   c = { "<cmd>lua lvim.builtin.cmp.active = false<cr>", "Completion off" },
   C = { "<cmd>lua lvim.builtin.cmp.active = true<cr>", "Completion on" },
-  -- w = { '<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap" },
-  -- r = { '<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative" },
-  -- l = { '<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline" },
-  -- s = { '<cmd>lua require("user.functions").toggle_option("spell")<cr>', "Spell" },
-  -- t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
+  w = { '<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap" },
+  r = { '<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative" },
+  l = { '<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline" },
+  s = { '<cmd>lua require("user.functions").toggle_option("spell")<cr>', "Spell" },
+  t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
 }
 
 lvim.builtin.which_key.mappings["n"] = {
@@ -169,16 +171,27 @@ elseif lvim.builtin.task_runner == "overseer" then
     f = { "<cmd>OverseerTaskAction<CR>", "Task Action" },
     t = { "<cmd>OverseerToggle<cr>", "Toggle Output" },
   }
+  lvim.builtin.which_key.mappings["t"] = {
+    name = "ﭧ Test",
+    f = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), env=require('user.ntest').get_env()})<cr>", "File" },
+    o = { "<cmd>lua require('neotest').output.open({ enter = true, short = false })<cr>", "Output" },
+    r = { "<cmd>lua require('neotest').run.run({env=require('user.ntest').get_env()})<cr>", "Run" },
+    a = { "<cmd>lua require('user.ntest').run_all()<cr>", "Run All" },
+    c = { "<cmd>lua require('user.ntest').cancel()<cr>", "Cancel" },
+    R = { "<cmd>lua require('user.ntest').run_file_sync()<cr>", "Run Async" },
+    s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
+    n = { "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>", "jump to next failed" },
+    p = { "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>", "jump to previous failed" },
+    d = { "<cmd>lua require('neotest').run.run({ strategy = 'dap' })<cr>", "Dap Run" },
+    x = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
+    w = { "<cmd>lua require('neotest').watch.watch()<cr>", "Watch" },
+  }
   lvim.builtin.which_key.mappings["r"] = {
     name = " Run",
     f = { "<cmd>OverseerRun<cr>", "Run" },
     p = { "<cmd>OverseerRunCmd<cr>", "Run with Cmd" },
     t = { "<cmd>OverseerToggle<cr>", "Toggle" },
   }
-else
-  lvim.builtin.which_key.mappings["m"] = "Make"
-  lvim.builtin.which_key.mappings["r"] = "Run"
-  require("user.autocommands").make_run()
 end
 
 -- lvim.builtin.which_key.mappings[";"] = nil

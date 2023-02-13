@@ -7,7 +7,6 @@ lvim.plugins = {
   "lunarvim/github.nvim",
   "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  "christianchiarulli/nvim-ts-rainbow",
   "mfussenegger/nvim-jdtls",
   -- "karb94/neoscroll.nvim",
   "opalmay/vim-smoothie",
@@ -38,6 +37,7 @@ lvim.plugins = {
   "sindrets/diffview.nvim",
   "simrat39/rust-tools.nvim", --  "olexsmir/gopher.nvim",
   --  "ray-x/go.nvim",
+  "nvim-telescope/telescope-dap.nvim",
   "olexsmir/gopher.nvim",
   {
     "leoluz/nvim-dap-go",

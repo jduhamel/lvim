@@ -193,7 +193,7 @@ M.config = function()
         "TelescopePrompt",
       },
       always_divide_middle = true,
-      globalstatus = lvim.builtin.global_statusline and not lvim.builtin.tmux_lualine,
+      globalstatus = lvim.builtin.global_statusline,
     },
     sections = {
       -- these are to remove the defaults

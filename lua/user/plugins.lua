@@ -17,6 +17,20 @@ M.config = function()
     --     return (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes
     --   end,
     -- },
+    { "folke/neodev.nvim" },
+    {
+      "TimUntersberger/neogit",
+      config = function()
+        require("user.neogit").config()
+      end,
+    },
+    {
+      "anuvyklack/pretty-fold.nvim",
+      dependencies = { "anuvyklack/fold-preview.nvim" },
+      config = function()
+        require("user.pretty-fold").config()
+      end,
+    },
     {
       "rose-pine/neovim",
       name = "rose-pine",
@@ -221,13 +235,14 @@ M.config = function()
     },
     { "mfussenegger/nvim-jdtls", ft = "java" },
     {
-      "kristijanhusak/orgmode.nvim",
+      "nvim-orgmode/orgmode",
+      dependencies = { "lvim-tech/lvim-org-utils" },
       keys = { "go", "gC" },
       ft = { "org" },
       config = function()
         require("user.orgmode").setup()
       end,
-      enabled = lvim.builtin.orgmode.active,
+      enabled = true,
     },
     {
       "danymat/neogen",
@@ -423,7 +438,7 @@ M.config = function()
       config = function()
         require("user.diffview").config()
       end,
-      enabled = lvim.builtin.fancy_diff.active,
+      enabled = true,
     },
     {
       "chipsenkbeil/distant.nvim",
@@ -439,7 +454,7 @@ M.config = function()
           ),
         }
       end,
-      enabled = lvim.builtin.remote_dev.active,
+      enabled = true,
     },
     {
       "abzcoding/nvim-mini-file-icons",

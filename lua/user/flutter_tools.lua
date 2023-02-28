@@ -8,7 +8,7 @@ M.config = function()
   flt.setup {
     ui = { border = "rounded" },
     debugger = { enabled = true, run_via_dap = true, exception_breakpoints = {} },
-    outline = { auto_open = false },
+    outline = { auto_open = true },
     decorations = {
       statusline = { device = true, app_version = true },
     },
@@ -21,7 +21,7 @@ M.config = function()
         virtual_text = false,
       },
       settings = {
-        showTodos = false,
+        showTodos = true,
         renameFilesWithClasses = "prompt",
         updateImportsOnRename = true,
         completeFunctionCalls = true,

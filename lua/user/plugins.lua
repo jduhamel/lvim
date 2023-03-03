@@ -674,22 +674,36 @@ M.config = function()
       enabled = lvim.builtin.noice.active,
     },
     {
-      "olexsmir/gopher.nvim",
+      "ray-x/go.nvim",
+      dependencies = { -- optional packages
+        "ray-x/guihua.lua",
+        "neovim/nvim-lspconfig",
+        "nvim-treesitter/nvim-treesitter",
+      },
       config = function()
-        require("gopher").setup {
-          commands = {
-            go = "go",
-            gomodifytags = "gomodifytags",
-            gotests = "gotests",
-            impl = "impl",
-            iferr = "iferr",
-          },
-        }
+        require("go").setup()
       end,
+      event = { "CmdlineEnter" },
       ft = { "go", "gomod" },
-      event = { "BufRead", "BufNew" },
-      enabled = lvim.builtin.go_programming.active,
+      build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     },
+    -- {
+    --   "olexsmir/gopher.nvim",
+    --   config = function()
+    --     require("gopher").setup {
+    --       commands = {
+    --         go = "go",
+    --         gomodifytags = "gomodifytags",
+    --         gotests = "gotests",
+    --         impl = "impl",
+    --         iferr = "iferr",
+    --       },
+    --     }
+    --   end,
+    --   ft = { "go", "gomod" },
+    --   event = { "BufRead", "BufNew" },
+    --   enabled = lvim.builtin.go_programming.active,
+    -- },
     {
       "leoluz/nvim-dap-go",
       config = function()
@@ -751,7 +765,9 @@ M.config = function()
       lazy = true,
       event = "VeryLazy",
       config = function()
-        require("hlargs").setup()
+        require("hlargs").setup {
+          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+        }
       end,
       dependencies = { "nvim-treesitter/nvim-treesitter" },
       enabled = lvim.builtin.colored_args,
@@ -802,6 +818,17 @@ M.config = function()
       end,
       event = "VeryLazy",
       enabled = lvim.builtin.mind.active,
+    },
+    {
+      "jackMort/ChatGPT.nvim",
+      config = function()
+        require("user.chatgpt").config()
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+      },
     },
   }
 end

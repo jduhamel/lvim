@@ -21,9 +21,11 @@ M.config = function()
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp" },
     { name = "cmp_tabnine", max_item_count = 3 },
+    { name = "copilot", group_index = 2 },
     { name = "buffer", max_item_count = 5, keyword_length = 5 },
     { name = "path", max_item_count = 5 },
     { name = "luasnip", max_item_count = 3 },
+    --    { name = }
     { name = "nvim_lua" },
     { name = "calc" },
     { name = "emoji" },
@@ -32,6 +34,7 @@ M.config = function()
     { name = "crates" },
     { name = "orgmode" },
   }
+
   lvim.builtin.cmp.experimental = {
     ghost_text = false,
     native_menu = false,
@@ -363,6 +366,7 @@ M.config = function()
   lvim.builtin.treesitter.highlight.disable = { "org" }
   lvim.builtin.treesitter.highlight.aditional_vim_regex_highlighting = { "org" }
   lvim.builtin.treesitter.ignore_install = { "haskell", "norg" }
+  lvim.builtin.treesitter.indent.enable = true
   lvim.builtin.treesitter.incremental_selection = {
     enable = true,
     keymaps = {

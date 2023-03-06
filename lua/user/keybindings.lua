@@ -1,18 +1,5 @@
 local M = {}
 
--- HACK: for some reason, the alt keybindings are not working in my wezterm
-M.set_wezterm_keybindings = function()
-  lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]
-  lvim.keys.insert_mode["ß"] = lvim.keys.insert_mode["<A-s>"]
-  lvim.keys.insert_mode["´"] = lvim.keys.insert_mode["<A-e>"]
-  lvim.keys.insert_mode["∆"] = lvim.keys.insert_mode["<A-j>"]
-  lvim.keys.insert_mode["˚"] = lvim.keys.insert_mode["<A-k>"]
-  lvim.keys.normal_mode["å"] = lvim.keys.normal_mode["<A-a>"]
-  lvim.keys.normal_mode["≈"] = lvim.keys.normal_mode["<A-x>"]
-  lvim.keys.visual_mode["å"] = lvim.keys.visual_mode["<A-a>"]
-  lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
-end
-
 M.set_terminal_keymaps = function()
   local opts = { noremap = true }
   vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
@@ -90,7 +77,7 @@ local function set_bufferline_keymaps()
   lvim.keys.normal_mode["<S-h>"] = "<Cmd>BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["[b"] = "<Cmd>BufferLineMoveNext<CR>"
   lvim.keys.normal_mode["]b"] = "<Cmd>BufferLineMovePrev<CR>"
-  lvim.builtin.which_key.mappings["c"] = {}
+  --  lvim.builtin.which_key.mappings["c"] = {}
   lvim.builtin.which_key.mappings.b = {
     name = "﩯Buffer",
     ["1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "goto 1" },
@@ -265,6 +252,7 @@ M.config = function()
     lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
     lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
   end
+  lvim.builtin.which_key.mappings["gg"] = { "<cmd>Neogit<cr>", "Neogit" }
   if lvim.builtin.fancy_diff.active then
     lvim.builtin.which_key.mappings["gd"] = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" }
     lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" }

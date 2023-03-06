@@ -122,6 +122,7 @@ M.config = function()
       end,
       enabled = lvim.builtin.motion_provider == "hop",
     },
+    "codota/tabnine-nvim",
     {
       "simrat39/symbols-outline.nvim",
       config = function()
@@ -140,10 +141,13 @@ M.config = function()
           max_lines = 1000,
           max_num_results = 10,
           sort = true,
+          run_on_every_keystroke = true,
+          snippet_placeholder = "…",
+          show_prediction_string = true,
         }
       end,
       lazy = true,
-      event = "InsertEnter",
+      -- event = "InsertEnter",
       enabled = lvim.builtin.tabnine.active,
     },
     {
@@ -168,6 +172,12 @@ M.config = function()
         vim.g.matchup_surround_enabled = 1
         vim.g.matchup_matchparen_deferred = 1
         vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
+    {
+      "kylechui/nvim-surround",
+      config = function()
+        require("user.surround").config()
       end,
     },
     {
@@ -404,23 +414,23 @@ M.config = function()
       enabled = lvim.builtin.smooth_scroll == "cinnamon",
     },
     {
-      "github/copilot.vim",
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      dependencies = { "nvim-cmp" },
       config = function()
-        require("user.copilot").config()
+        require("copilot_cmp").setup()
       end,
-      enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
     },
     {
       "zbirenbaum/copilot.lua",
       dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
       config = function()
-        local cmp_source = { name = "copilot", group_index = 2 }
-        table.insert(lvim.builtin.cmp.sources, cmp_source)
-        vim.defer_fn(function()
-          require("copilot").setup()
-        end, 100)
+        require("copilot").setup {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        }
       end,
-      enabled = lvim.builtin.sell_your_soul_to_devil.prada,
+      enabled = true,
     },
     {
       "ThePrimeagen/harpoon",
@@ -456,6 +466,7 @@ M.config = function()
       end,
       enabled = true,
     },
+    "github/copilot.vim",
     {
       "abzcoding/nvim-mini-file-icons",
       config = function()
@@ -687,6 +698,22 @@ M.config = function()
       ft = { "go", "gomod" },
       build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     },
+    {
+      "RRethy/nvim-treesitter-textsubjects",
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          textsubjects = {
+            enable = true,
+            prev_selection = ",",
+            keymaps = {
+              ["."] = "textsubjects-smart",
+              [";"] = "textsubjects-container-outer",
+              ["i;"] = "textsubjects-container-inner",
+            },
+          },
+        }
+      end,
+    },
     -- {
     --   "olexsmir/gopher.nvim",
     --   config = function()
@@ -821,14 +848,14 @@ M.config = function()
     },
     {
       "jackMort/ChatGPT.nvim",
-      config = function()
-        require("user.chatgpt").config()
-      end,
       dependencies = {
         "MunifTanjim/nui.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
       },
+      config = function()
+        require("chatgpt").setup()
+      end,
     },
   }
 end

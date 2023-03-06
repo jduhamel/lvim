@@ -1,15 +1,13 @@
 local M = {}
 
 M.config = function()
-  local status_ok, chatgpt = pcall(require, "chatgpt")
+  local status_ok, cgpt = pcall(require, "chatgpt")
   if not status_ok then
-    vim.notify "nvim-gps not found"
+    vim.notify "cgpt gps not found"
     return
   end
 
-  require("chatgpt").setup {
-    --    welcome_message = WELCOME_MESSAGE, -- set to "" if you don't like the fancy godot robot
-    loading_text = "loading",
+  cgpt.setup {
     question_sign = "", -- you can use emoji if you want e.g. 🙂
     answer_sign = "ﮧ", -- 🤖
     max_line_length = 120,
@@ -31,12 +29,12 @@ M.config = function()
       },
     },
     chat_window = {
-      filetype = "chatgpt",
+      filetype = "cgpt",
       border = {
         highlight = "FloatBorder",
         style = "rounded",
         text = {
-          top = " ChatGPT ",
+          top = " cgpt ",
         },
       },
     },
@@ -76,11 +74,6 @@ M.config = function()
       cycle_windows = "<Tab>",
     },
   }
-
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.keymap.set
-
-  keymap("n", "<c-p>", "<cmd>ChatGPT<cr>", opts)
 end
 
 return M

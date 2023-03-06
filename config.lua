@@ -32,7 +32,7 @@ lvim.builtin.sql_integration = { active = true } -- use sql integration
 lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
-lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
+lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = true } -- enable/disable remote development
 lvim.builtin.cursorline = { active = true } -- use a bit fancier cursorline
@@ -60,7 +60,7 @@ lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtua
 if lvim.builtin.lsp_lines then
   lvim.lsp.diagnostics.virtual_text = false
 end
-lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
+lvim.builtin.legendary = { active = true } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.lir.active = false
 lvim.builtin.breadcrumbs.active = true

@@ -96,18 +96,16 @@ local function set_bufferline_keymaps()
     f = { "<cmd>Telescope buffers<cr>", "Find" },
     b = { "<cmd>b#<cr>", "Previous" },
     h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    l = {
-      "<cmd>BufferLineCloseRight<cr>",
-      "Close all to the right",
+    l = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
+    D = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
+    L = { "<cmd>BufferLineSortByExtension<cr>", "Sort by language" },
+    T = {
+      "<cmd>lua require('telescope').extensions['telescope-tabs'].list_tabs(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Tabs'})<cr>",
+      "Find Tab",
     },
-    D = {
-      "<cmd>BufferLineSortByDirectory<cr>",
-      "Sort by directory",
-    },
-    L = {
-      "<cmd>BufferLineSortByExtension<cr>",
-      "Sort by language",
-    },
+    N = { "<cmd>tabnew %<cr>", "New Tab" },
+    C = { "<cmd>tabclose<cr>", "Close Tab" },
+    O = { "<cmd>tabonly<cr>", "Only Tab" },
   }
 end
 
@@ -209,7 +207,7 @@ M.config = function()
   lvim.keys.normal_mode["<A-x>"] = "<C-x>"
   lvim.keys.normal_mode["<C-,>"] = "<cmd>lua require('neogen').jump_next()<CR>"
   lvim.keys.normal_mode["<C-n>i"] = { "<C-i>", { noremap = true } }
-  if vim.fn.has "mac" == 1 then
+  if vim.fn.has "mac" == 2 then
     lvim.keys.normal_mode["gx"] =
       [[<cmd>lua os.execute("open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
   elseif vim.fn.has "linux" then
@@ -229,8 +227,6 @@ M.config = function()
   if lvim.builtin.harpoon.active then
     set_harpoon_keymaps()
   end
-  lvim.keys.visual_mode["<A-a>"] = "<C-a>"
-  lvim.keys.visual_mode["<A-x>"] = "<C-x>"
   lvim.keys.visual_mode["p"] = [["_dP]]
   lvim.keys.visual_mode["ga"] = "<esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>"
   lvim.keys.visual_mode["<leader>st"] = "<Cmd>lua require('user.telescope').grep_string_visual()<CR>"
@@ -247,37 +243,32 @@ M.config = function()
   else
     lvim.builtin.which_key.mappings["/"] = { "<Plug>(comment_toggle_linewise_current)", " Comment" }
   end
+
   lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "舘Dashboard" }
-  if lvim.builtin.dap.active then
-    lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
-    lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
-  end
+  lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
+  lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
+  lvim.builtin.which_key.mappings["gg"] = nil
   lvim.builtin.which_key.mappings["gg"] = { "<cmd>Neogit<cr>", "Neogit" }
-  if lvim.builtin.fancy_diff.active then
-    lvim.builtin.which_key.mappings["gd"] = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" }
-    lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" }
-  else
-    lvim.builtin.which_key.mappings["gh"] = { "<cmd>Telescope git_bcommits<cr>", "file history" }
-  end
-  if lvim.builtin.cheat.active then
-    lvim.builtin.which_key.mappings["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" }
-  end
+  lvim.builtin.which_key.mappings["gd"] = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" }
+  lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" }
+  lvim.builtin.which_key.mappings["gH"] = { "<cmd>Telescope git_bcommits<cr>", "file history" }
+
+  lvim.builtin.which_key.mappings["?"] = { "<cmd>Cheat<CR>", " Cheat.sh" }
   if lvim.builtin.lsp_lines then
     M.set_lsp_lines_keymap()
   end
   if lvim.builtin.tree_provider == "neo-tree" then
     lvim.builtin.which_key.mappings["e"] = { "<cmd>Neotree toggle<CR>", " Explorer" }
   end
+
   lvim.builtin.which_key.mappings["F"] = {
     name = " Find",
     b = { "<cmd>lua require('user.telescope').builtin()<cr>", "Builtin" },
+    F = { "<cmd>Telescope file_browser<cr>", "File Browser" },
     f = { "<cmd>lua require('user.telescope').curbuf()<cr>", "Current Buffer" },
     g = { "<cmd>lua require('user.telescope').git_files()<cr>", "Git Files" },
     i = { "<cmd>lua require('user.telescope').installed_plugins()<cr>", "Installed Plugins" },
-    l = {
-      "<cmd>lua require('telescope.builtin').resume()<cr>",
-      "Last Search",
-    },
+    l = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Last Search" },
     p = { "<cmd>lua require('user.telescope').project_search()<cr>", "Project" },
     s = { "<cmd>lua require('user.telescope').git_status()<cr>", "Git Status" },
     z = { "<cmd>lua require('user.telescope').search_only_certain_files()<cr>", "Certain Filetype" },

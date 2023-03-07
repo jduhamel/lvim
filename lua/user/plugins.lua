@@ -714,23 +714,24 @@ M.config = function()
         }
       end,
     },
-    -- {
-    --   "olexsmir/gopher.nvim",
-    --   config = function()
-    --     require("gopher").setup {
-    --       commands = {
-    --         go = "go",
-    --         gomodifytags = "gomodifytags",
-    --         gotests = "gotests",
-    --         impl = "impl",
-    --         iferr = "iferr",
-    --       },
-    --     }
-    --   end,
-    --   ft = { "go", "gomod" },
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.go_programming.active,
-    -- },
+    { "olical/conjure" },
+    {
+      "olexsmir/gopher.nvim",
+      config = function()
+        require("gopher").setup {
+          commands = {
+            go = "go",
+            gomodifytags = "gomodifytags",
+            gotests = "gotests",
+            impl = "impl",
+            iferr = "iferr",
+          },
+        }
+      end,
+      ft = { "go", "gomod" },
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.old_go_programming.active,
+    },
     {
       "leoluz/nvim-dap-go",
       config = function()
@@ -738,7 +739,7 @@ M.config = function()
       end,
       ft = { "go", "gomod" },
       event = { "BufRead", "BufNew" },
-      enabled = lvim.builtin.go_programming.active,
+      enabled = lvim.builtin.old_go_programming.active,
     },
     {
       "AckslD/swenv.nvim",

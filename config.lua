@@ -1,8 +1,14 @@
 -- Neovim
 -- =========================================
 lvim.leader = " "
+lvim.localleader = ","
+lvim.log.level = "warn"
+vim.g.python_host_prog = "/usr/bin/python"
+vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.maplocalleader = ","
+lvim.leader = " "
 lvim.colorscheme = "tokyonight" -- set to a custom theme
-lvim.builtin.time_based_themes = true -- set false to use your own configured theme
+lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
 lvim.debug = false
 vim.lsp.set_log_level "error"

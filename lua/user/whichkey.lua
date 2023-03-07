@@ -1,6 +1,7 @@
 lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<CR>", " Add Mark" }
 lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "﩯Buffer" }
 lvim.builtin.which_key.mappings["v"] = { "<cmd>vsplit<cr>", "| vsplit" }
+lvim.builtin.which_key.mappings["e"] = { "<cmd>Neotree toggle<CR>", " Explorer" }
 lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<cr>", "nohl" }
 lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" }
 lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" }

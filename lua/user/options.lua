@@ -1,4 +1,4 @@
-lvim.colorscheme = "gotham256"
+lvim.colorscheme = "rdark-terminal2"
 lvim.log.level = "warn"
 lvim.builtin.alpha.active = true
 lvim.lsp.diagnostics.float.focusable = true
@@ -38,7 +38,7 @@ lvim.builtin.cmp.formatting.source_names = {
   treesitter = "TS",
 }
 lvim.builtin.cmp.formatting = {
-    format = require("tailwindcss-colorizer-cmp").formatter
+  format = require("tailwindcss-colorizer-cmp").formatter,
 }
 -- lvim.builtin.autopairs.active = false
 -- vim.g.netrw_browse_split = 0

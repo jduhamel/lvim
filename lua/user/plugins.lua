@@ -5,6 +5,7 @@ lvim.plugins = {
   "rafi/awesome-vim-colorschemes",
   "roobert/tailwindcss-colorizer-cmp.nvim",
   "lunarvim/github.nvim",
+
   "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "mfussenegger/nvim-jdtls",
@@ -38,6 +39,19 @@ lvim.plugins = {
   "simrat39/rust-tools.nvim", --  "olexsmir/gopher.nvim",
   --  "ray-x/go.nvim",
   "nvim-telescope/telescope-dap.nvim",
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    cmd = "Neotree",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("user.neotree").config()
+    end,
+    enabled = true,
+  },
+
   "olexsmir/gopher.nvim",
   {
     "leoluz/nvim-dap-go",

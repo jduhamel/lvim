@@ -9,48 +9,6 @@ M.set_terminal_keymaps = function()
   vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
-M.set_hop_keymaps = function()
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap("n", "s", ":HopChar2MW<cr>", opts)
-  vim.api.nvim_set_keymap("n", "S", ":HopWordMW<cr>", opts)
-  vim.api.nvim_set_keymap(
-    "n",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "n",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "o",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "o",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "",
-    "t",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "",
-    "T",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-    {}
-  )
-end
-
 M.set_hlslens_keymaps = function()
   local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap(
@@ -246,10 +204,10 @@ M.config = function()
 
   lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "舘Dashboard" }
   lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
-  lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
-  lvim.builtin.which_key.mappings["gg"] = nil
+  --  lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
+  lvim.builtin.which_key.mappings["gg"] = {}
   lvim.builtin.which_key.mappings["gg"] = { "<cmd>Neogit<cr>", "Neogit" }
-  lvim.builtin.which_key.mappings["gd"] = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" }
+  lvim.builtin.which_key.mappings["gD"] = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" }
   lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" }
   lvim.builtin.which_key.mappings["gH"] = { "<cmd>Telescope git_bcommits<cr>", "file history" }
 
@@ -432,13 +390,6 @@ M.config = function()
     "Structural replace",
   }
 
-  -- My wezterm is weird
-  -- =========================================
-  local user = vim.env.USER
-  if user and user == "abz" then
-    M.set_wezterm_keybindings()
-  end
-
   -- Navigate merge conflict markers
   local whk_status, whk = pcall(require, "which-key")
   if not whk_status then
@@ -448,6 +399,8 @@ M.config = function()
     ["]n"] = { "[[:call search('^(@@ .* @@|[<=>|]{7}[<=>|]@!)', 'W')<cr>]]", "next merge conflict" },
     ["[n"] = { "[[:call search('^(@@ .* @@|[<=>|]{7}[<=>|]@!)', 'bW')<cr>]]", "prev merge conflict" },
   }
+
+  --whk.register({ ["gg"] = { "<cmd>NeoGit<cr>", "NeoGit2" } }, { prefix = "<leader>" })
 end
 
 M.set_mind_keymaps = function()

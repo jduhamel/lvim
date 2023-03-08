@@ -21,7 +21,7 @@ M.config = function()
     },
     status = {
       virtual_text = true,
-      signs = false,
+      signs = true,
     },
     strategies = {
       integrated = {

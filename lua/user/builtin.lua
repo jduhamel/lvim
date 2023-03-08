@@ -86,6 +86,18 @@ M.config = function()
     lvim.builtin.cmp.formatting = {
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
+        if entry.source.name == "cmp_tabnine" then
+          local detail = (entry.completion_item.data or {}).detail
+          vim_item.kind = ""
+          if detail and detail:find ".*%%.*" then
+            vim_item.kind = vim_item.kind .. " " .. detail
+          end
+
+          if (entry.completion_item.data or {}).multiline then
+            vim_item.kind = vim_item.kind .. " " .. "[ML]"
+          end
+        end
+        --
         if entry.source.name == "cmdline" then
           vim_item.kind = "⌘"
           vim_item.menu = ""

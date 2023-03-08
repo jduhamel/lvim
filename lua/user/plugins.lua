@@ -6,6 +6,10 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
+    "ellisonleao/gruvbox.nvim",
+    "LunarVim/synthwave84.nvim",
+    "rafi/awesome-vim-colorschemes",
+    "lunarvim/github.nvim",
     -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
@@ -58,13 +62,7 @@ M.config = function()
         end
       end,
     },
-    {
-      "rebelot/kanagawa.nvim",
-      config = function()
-        require("user.theme").kanagawa()
-        lvim.colorscheme = "kanagawa"
-      end,
-    },
+    "rebelot/kanagawa.nvim",
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -117,7 +115,6 @@ M.config = function()
       end,
       enabled = lvim.builtin.motion_provider == "hop",
     },
-    "codota/tabnine-nvim",
     {
       "simrat39/symbols-outline.nvim",
       config = function()
@@ -126,6 +123,7 @@ M.config = function()
       event = "BufReadPost",
       enabled = lvim.builtin.tag_provider == "symbols-outline",
     },
+    "theHamsta/nvim-dap-virtual-text",
     {
       "tzachar/cmp-tabnine",
       build = "./install.sh",
@@ -141,9 +139,7 @@ M.config = function()
           show_prediction_string = true,
         }
       end,
-      lazy = true,
-      -- event = "InsertEnter",
-      enabled = lvim.builtin.tabnine.active,
+      enabled = true, -- lvim.builtin.tabnine.active,
     },
     {
       "folke/twilight.nvim",
@@ -310,10 +306,15 @@ M.config = function()
         require("user.ntest").config()
       end,
       dependencies = {
-        { "nvim-neotest/neotest-plenary" },
+        {
+          "nvim-neotest/neotest-plenary",
+          "nvim-lua/plenary.nvim",
+          "nvim-treesitter/nvim-treesitter",
+          "antoinemadec/FixCursorHold.nvim",
+        },
       },
       event = { "BufReadPost", "BufNew" },
-      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
+      enabled = true,
     },
     { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
     { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },

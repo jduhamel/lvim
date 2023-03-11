@@ -441,22 +441,6 @@ M.config = function()
       enabled = true,
     },
     {
-      "chipsenkbeil/distant.nvim",
-      lazy = true,
-      build = { "DistantInstall" },
-      cmd = { "DistantLaunch", "DistantRun" },
-      config = function()
-        require("distant").setup {
-          ["*"] = vim.tbl_extend(
-            "force",
-            require("distant.settings").chip_default(),
-            { mode = "ssh" } -- use SSH mode by default
-          ),
-        }
-      end,
-      enabled = true,
-    },
-    {
       "abzcoding/nvim-mini-file-icons",
       config = function()
         require("nvim-web-devicons").setup()

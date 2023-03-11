@@ -4,11 +4,11 @@ M.config = function()
   local tree_icons = require("user.lsp_kind").nvim_tree_icons
   require("neo-tree").setup {
     popup_border_style = "rounded",
-    enable_diagnostics = false,
+    enable_diagnostics = true,
     source_selector = {
       winbar = true,
-      separator_active = " ",
-      statusline = false,
+      --      separator_active = " ",
+      statusline = true,
     },
     enable_git_status = true,
     git_status_async = true,
@@ -39,7 +39,7 @@ M.config = function()
     filesystem = {
       group_empty_dirs = true,
       filtered_items = {
-        visible = false,
+        visible = true,
         hide_dotfiles = true,
         hide_gitignored = false,
         hide_by_name = {
@@ -52,13 +52,13 @@ M.config = function()
           ".DS_Store",
         },
       },
-      window = {
-        mappings = {
-          ["h"] = "navigate_up",
-          ["l"] = "open",
-        },
-      },
-      follow_current_file = true,
+      -- window = {
+      --   mappings = {
+      --     ["h"] = "navigate_up",
+      --     ["l"] = "open",
+      --   },
+      -- },
+      -- follow_current_file = true,
       hijack_netrw_behavior = "open_current",
       use_libuv_file_watcher = true,
     },

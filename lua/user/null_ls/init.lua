@@ -16,6 +16,11 @@ M.config = function()
   if vim.fn.filereadable(semgrep_rule_folder .. "template.yaml") then
     use_semgrep = true
   end
+  local revive_conf = vim.fn.findfile(os.getenv "HOME" .. "/.config/revive.toml")
+  local revive_args = { "-formatter", "json", "./..." }
+  if revive_conf then
+    revive_args = { "-config", revive_conf, "-formatter", "json", "./..." }
+  end
 
   local custom_go_actions = require "user.null_ls.go"
   local custom_md_hover = require "user.null_ls.markdown"
@@ -90,6 +95,13 @@ M.config = function()
     nls.builtins.diagnostics.revive.with {
       condition = function(utils)
         return utils.root_has_file "revive.toml"
+      end,
+      args = revive_args,
+      diagnosticS_postprocess = function(d)
+        d.severity = vim.diagnostic.severity.INFO
+        d.end_col = d.col
+        d.end_row = d.row
+        d.end_lnum = d.lnum
       end,
     },
     nls.builtins.code_actions.shellcheck,

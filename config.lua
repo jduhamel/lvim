@@ -11,7 +11,7 @@ vim.o.conceallevel = 2 -- uncomment if you want to see concealed text
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
 lvim.lsp.diagnostics.virtual_text = true -- remove this line if you want to see inline errors
-lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.installer.setup.automatic_installation = true
 
 -- Customization
 -- =========================================

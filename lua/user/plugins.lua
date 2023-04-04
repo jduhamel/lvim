@@ -19,6 +19,12 @@ M.config = function()
     -- },
     { "folke/neodev.nvim" },
     {
+      "allaman/kustomize.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      ft = "yaml",
+      opts = { defaults = true },
+    },
+    {
       "TimUntersberger/neogit",
       config = function()
         require("user.neogit").config()

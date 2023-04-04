@@ -127,7 +127,7 @@ lvim.plugins = {
     end,
     event = { "BufRead", "BufNew" },
     enabled = lvim.builtin.task_runner == "async_tasks",
-  }, -- End JSD plugins / changes
+  },
   {
     "saecki/crates.nvim",
     version = "v0.3.0",

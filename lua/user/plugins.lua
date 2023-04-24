@@ -438,7 +438,23 @@ M.config = function()
       config = function()
         require("user.diffview").config()
       end,
-      enabled = true,
+      enabled = lvim.builtin.fancy_diff.active,
+    },
+    {
+      "chipsenkbeil/distant.nvim",
+      lazy = true,
+      build = { "DistantInstall" },
+      cmd = { "DistantLaunch", "DistantRun" },
+      config = function()
+        require("distant").setup {
+          ["*"] = vim.tbl_extend(
+            "force",
+            require("distant.settings").chip_default(),
+            { mode = "ssh" } -- use SSH mode by default
+          ),
+                                 }
+      end,
+      enabled = lvim.builtin.remote_dev.active,
     },
     {
       "abzcoding/nvim-mini-file-icons",
@@ -735,7 +751,9 @@ M.config = function()
       lazy = true,
       event = "VeryLazy",
       config = function()
-        require("hlargs").setup()
+        require("hlargs").setup {
+          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+                                }
       end,
       dependencies = { "nvim-treesitter/nvim-treesitter" },
       enabled = lvim.builtin.colored_args,

@@ -3,6 +3,7 @@ local M = {}
 local create_aucmd = vim.api.nvim_create_autocmd
 
 M.config = function()
+  local user = vim.env.USER
   vim.api.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
     callback = function()
@@ -125,7 +126,7 @@ M.config = function()
   local user = vim.env.USER
   if user and user == "joe" then
     create_aucmd("CursorHold", {
-      group = "_lvim_user",
+                   group = "_lvim_user",
       pattern = { "*.rs", "*.go", "*.ts", "*.tsx" },
       command = codelens_viewer,
     })
@@ -134,19 +135,19 @@ end
 
 M.make_run = function()
   create_aucmd("FileType", {
-    group = "_lvim_user",
-    pattern = { "c", "cpp" },
-    callback = function()
-      vim.keymap.set(
-        "n",
-        "<leader>m",
-        "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='make ;read',count=2,direction='float'})<CR>"
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>r",
-        "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='make run;read',count=3,direction='float'})<CR>"
-      )
+                 group = "_lvim_user",
+                 pattern = { "c", "cpp" },
+                 callback = function()
+                   vim.keymap.set(
+                     "n",
+                     "<leader>m",
+                     "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='make ;read',count=2,direction='float'})<CR>"
+                   )
+                   vim.keymap.set(
+                     "n",
+                     "<leader>r",
+                     "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='make run;read',count=3,direction='float'})<CR>"
+                   )
     end,
   })
   create_aucmd("FileType", {

@@ -1,4 +1,4 @@
-lvim.colorscheme = "darkplus"
+lvim.colorscheme = "gotham256"
 -- lvim.colorscheme = "poimandres"
 lvim.log.level = "warn"
 lvim.builtin.alpha.active = true

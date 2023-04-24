@@ -1,9 +1,12 @@
 local M = {}
 
 M.config = function()
-  vim.g.copilot_no_tab_map = true
-  vim.g.copilot_assume_mapped = true
-  vim.g.copilot_tab_fallback = ""
+  local status_ok, copilot = pcall(require, "copilot")
+  if not status_ok then
+    vim.notity "copilot not found"
+    return
+  end
+
   vim.g.copilot_filetypes = {
     ["*"] = false,
     python = true,
@@ -20,6 +23,40 @@ M.config = function()
     typescriptreact = true,
     terraform = true,
   }
+
+  copilot.setup {
+    panel = {
+      enabled = true,
+      auto_refresh = false,
+      keymap = {
+        jump_next = "<c-j>",
+        jump_prev = "<c-k>",
+        accept = "<c-a>",
+        refresh = "r",
+        open = "<M-CR>",
+      },
+      layout = {
+        position = "bottom", -- | top | left | right
+        ratio = 0.4,
+      },
+    },
+    suggestion = {
+      enabled = true,
+      auto_trigger = false,
+      debounce = 75,
+      keymap = {
+        accept = "<c-a>",
+        accept_word = false,
+        accept_line = false,
+        next = "<c-j>",
+        prev = "<c-k>",
+        dismiss = "<C-e>",
+      },
+    },
+  }
 end
+
+-- local opts = { noremap = true, silent = true }
+-- local keymap = vim.keymap.set
 
 return M

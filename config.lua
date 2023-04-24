@@ -146,6 +146,8 @@ require("user.null_ls").config()
 -- Additional Plugins
 -- =========================================
 require("user.plugins").config()
+-- require("user.copilot").config()
+-- require("user.neoai").config()
 
 -- Autocommands
 -- =========================================

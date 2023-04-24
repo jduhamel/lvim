@@ -144,13 +144,16 @@ M.config = function()
         local tabnine = require "cmp_tabnine.config"
         tabnine:setup {
           max_lines = 1000,
-          max_num_results = 10,
+          max_num_results = 20,
           sort = true,
+          run_on_every_keystroke = true,
+          snippet_placeholder = "..",
+          show_prediction_strength = false,
         }
       end,
       lazy = true,
       event = "InsertEnter",
-      enabled = lvim.builtin.tabnine.active,
+      --      enabled = lvim.builtin.tabnine.active,
     },
     {
       "folke/twilight.nvim",
@@ -409,25 +412,35 @@ M.config = function()
       event = "BufRead",
       enabled = lvim.builtin.smooth_scroll == "cinnamon",
     },
+    -- {
+    --   "github/copilot.vim",
+    --   config = function()
+    --     require("user.copilot").config()
+    --   end,
+    --   enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
+    -- },
     {
-      "github/copilot.vim",
+      "zbirenbaum/copilot.lua",
       config = function()
         require("user.copilot").config()
       end,
-      enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
+      event = "InsertEnter",
     },
     {
-      "zbirenbaum/copilot.lua",
-      dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
-      config = function()
-        local cmp_source = { name = "copilot", group_index = 2 }
-        table.insert(lvim.builtin.cmp.sources, cmp_source)
-        vim.defer_fn(function()
-          require("copilot").setup()
-        end, 100)
-      end,
-      enabled = lvim.builtin.sell_your_soul_to_devil.prada,
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
     },
+
+    -- dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
+    -- config = function()
+    --     local cmp_source = { name = "copilot", group_index = 2 }
+    --     table.insert(lvim.builtin.cmp.sources, cmp_source)
+    --     vim.defer_fn(function()
+    --       require("copilot").setup()
+    --     end, 100)
+    --   end,
+    --   enabled = lvim.builtin.sell_your_soul_to_devil.prada,
+    -- },
     {
       "ThePrimeagen/harpoon",
       dependencies = {
@@ -652,6 +665,12 @@ M.config = function()
       enabled = lvim.builtin.tree_provider == "neo-tree",
     },
     { "MunifTanjim/nui.nvim" },
+    {
+      "Bryley/neoai.nvim",
+      config = function()
+        require("user.neoai").config()
+      end,
+    },
     {
       "folke/noice.nvim",
       event = "VeryLazy",

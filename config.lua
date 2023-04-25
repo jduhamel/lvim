@@ -29,5 +29,5 @@ reload "user.copilot"
 reload "user.chatgpt"
 reload "user.whichkey"
 
-lvim.colorscheme = "gotham256"
+lvim.colorscheme = "tokyonight"
 reload "user.neoai"

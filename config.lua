@@ -31,3 +31,21 @@ reload "user.whichkey"
 
 lvim.colorscheme = "tokyonight"
 reload "user.neoai"
+-- lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+-- write a function that counts to 10
+
+
+
+
+-- lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+-- write a function that counts to 10
+
+lvim.builtin.which_key.mappings["P"] = {
+  name = "Python",
+  i = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Pick Env" },
+  d = { "<cmd>lua require('swenv.api').get_current_venv()<cr>", "Show Env" },
+}
+
+

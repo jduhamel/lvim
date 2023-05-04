@@ -8,7 +8,7 @@ M.config = function()
   end
 
   vim.g.copilot_filetypes = {
-    ["*"] = false,
+    ["*"] = true,
     python = true,
     lua = true,
     go = true,

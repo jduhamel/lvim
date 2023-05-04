@@ -44,7 +44,7 @@ lvim.builtin.hlslens = { active = true } -- enable/disable hlslens
 lvim.builtin.csv_support = true -- enable/disable csv support
 lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
 lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
-lvim.builtin.winbar_provider = "treesitter" -- can be "filename" or "treesitter" or "navic" or ""
+lvim.builtin.winbar_provider = "navic" -- can be "filename" or "treesitter" or "navic" or ""
 lvim.builtin.metals = {
   active = false, -- enable/disable nvim-metals for scala development
   fallbackScalaVersion = "3.2.0-RC3",
@@ -60,9 +60,6 @@ lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input an
 lvim.builtin.refactoring = { active = true } -- enable to use refactoring.nvim code_actions
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
-if lvim.builtin.lsp_lines then
-  lvim.lsp.diagnostics.virtual_text = false
-end
 lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.lir.active = false

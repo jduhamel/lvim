@@ -466,11 +466,11 @@ M.config = function()
       enabled = true,
     },
     {
-      "abzcoding/nvim-mini-file-icons",
+      "tapayne88/nvim-web-devicons",
       config = function()
         require("nvim-web-devicons").setup()
       end,
-      enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
+      --      enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
     },
     {
       "nvim-telescope/telescope-live-grep-args.nvim",

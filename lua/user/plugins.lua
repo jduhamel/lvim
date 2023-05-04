@@ -649,10 +649,9 @@ M.config = function()
       enabled = lvim.builtin.winbar_provider == "treesitter",
     },
     {
-      "SmiteshP/nvim-gps",
-      --      module_pattern = { "gps", "nvim-gps" },
+      "SmiteshP/nvim-navic",
       config = function()
-        require("user.gps").config()
+        require("user.navic").config()
       end,
       dependencies = "nvim-treesitter/nvim-treesitter",
       event = { "InsertEnter", "CursorHoldI" },

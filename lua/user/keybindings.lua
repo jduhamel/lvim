@@ -426,6 +426,17 @@ M.config = function()
       }
     end
   end
+
+  lvim.builtin.which_key.mappings["A"] = {
+    name = "A.I.",
+    c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
+    a = { "<cmd>ChatGPTActAs<cr>", "Act As GPT" },
+    e = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit GPT" },
+    r = { "<cmd>ChatRunCustomCodeAction<cr>", "Code Action GPT" },
+    s = { "<cmd>Copilot suggestion<cr>", "Toggle Copilot Suggestion" },
+    p = { "<cmd>Copilot panel<cr>", "Toggle Copilot Panel" },
+    t = { "<cmd>Copilot toggle<cr>", "Toggle Copilot" },
+  }
   lvim.builtin.which_key.mappings["T"] = {
     name = "飯Trouble",
     d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnosticss" },
@@ -441,6 +452,7 @@ M.config = function()
   lvim.builtin.which_key.vmappings["g"] = {
     name = " Git",
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    G = { "<cmd>Neogit<cr>", "Neogit" },
   }
   lvim.builtin.which_key.vmappings["r"] = {
     function()

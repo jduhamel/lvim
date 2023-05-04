@@ -7,6 +7,7 @@ M.config = function()
     return
   end
 
+  vim.notify "NeoAI registered"
   neoai.setup {
     -- Below are the default options, feel free to override what you would like changed
     ui = {

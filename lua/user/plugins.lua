@@ -420,6 +420,9 @@ M.config = function()
     --   enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
     -- },
     {
+      "AckslD/swenv.nvim",
+    },
+    {
       "zbirenbaum/copilot.lua",
       config = function()
         require("user.copilot").config()
@@ -428,7 +431,10 @@ M.config = function()
     },
     {
       "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
+      dependencies = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end,
     },
 
     -- dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
@@ -633,7 +639,7 @@ M.config = function()
     },
     {
       "SmiteshP/nvim-gps",
-      module_pattern = { "gps", "nvim-gps" },
+      --      module_pattern = { "gps", "nvim-gps" },
       config = function()
         require("user.gps").config()
       end,

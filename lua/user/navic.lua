@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function()
-  local found, gp = pcall(require, "navic")
+  local found, navic = pcall(require, "nvim-navic")
   if not found then
     vim.notify "nvim-gps not found"
     return

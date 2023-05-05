@@ -466,7 +466,7 @@ M.config = function()
       enabled = true,
     },
     {
-      "tapayne88/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
       config = function()
         require("nvim-web-devicons").setup()
       end,

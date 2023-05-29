@@ -101,16 +101,22 @@ M.config = function()
     nvim_lua = "(NvLua)",
   }
   if lvim.builtin.borderless_cmp then
-    vim.opt.pumblend = 4
+    vim.opt.pumblend = 10
     lvim.builtin.cmp.formatting.fields = { "abbr", "kind", "menu" }
     lvim.builtin.cmp.window = {
       completion = {
-        border = cmp_border,
-        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+        border = "rounded", -- cmp_border,
+        --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+        col_offset = -3,
+        side_padding = 1,
+        scrollbar = false,
+        -- scrollbar = { position = 'inside' }
       },
       documentation = {
-        border = cmp_border,
-        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+        border = "rounded", -- cmp_border,
+        --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+        winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
       },
     }
     lvim.builtin.cmp.formatting.format = function(entry, vim_item)

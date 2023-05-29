@@ -141,6 +141,17 @@ M.config = function()
       build = "./install.sh",
       dependencies = "hrsh7th/nvim-cmp",
       config = function()
+        -- lvim.log.level = "debug"
+        -- require("tabnine").setup {
+        --   disable_auto_comment = true,
+        --   accept_keymap = "<c-enter>",
+        --   dismiss_keymap = "<C-]>",
+        --   debounce_ms = 800,
+        --   -- suggestion_color = {gui = "#808080", cterm = 244},
+        --   exclude_filetypes = { "TelescopePrompt" },
+        --   log_file_path = nil, -- absolute path to Tabnine log file
+        -- }
+
         local tabnine = require "cmp_tabnine.config"
         tabnine:setup {
           max_lines = 1000,

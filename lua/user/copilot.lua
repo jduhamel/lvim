@@ -31,7 +31,7 @@ M.config = function()
       keymap = {
         jump_next = "<c-j>",
         jump_prev = "<c-k>",
-        accept = "<c-a>",
+        accept = "<c-l>",
         refresh = "r",
         open = "<M-CR>",
       },
@@ -42,15 +42,15 @@ M.config = function()
     },
     suggestion = {
       enabled = true,
-      auto_trigger = false,
+      auto_trigger = true,
       debounce = 75,
       keymap = {
-        accept = "<c-a>",
+        accept = "<c-l>",
         accept_word = false,
         accept_line = false,
         next = "<c-j>",
         prev = "<c-k>",
-        dismiss = "<C-e>",
+        dismiss = "<C-h>",
       },
     },
   }

@@ -30,7 +30,7 @@ M.config = function()
       .. kind.cmp_kind.Module
       .. " "
       .. string.format("% 4d", plugins)
-      .. " plugins  "
+      .. " plugins 󰚥 "
       .. vim.version().major
       .. "."
       .. vim.version().minor

@@ -305,8 +305,12 @@ M.config = function()
   end
   lvim.builtin.which_key.mappings["H"] = "󰞋 Help"
   lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<CR>", "󰸱 No Highlight" }
-  lvim.builtin.which_key.mappings.g.name = " Git"
-
+  --  lvim.builtin.which_key.mappings["g"] = {
+  --    name = " Git",
+  --    g = { "<cmd>Neogit<cr>", "Neogit" },
+  --    d = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" },
+  --    h = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" },
+  --  }
   lvim.builtin.which_key.mappings["I"] = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", " Toggle Inlay" }
   lvim.builtin.which_key.mappings.l.name = " LSP"
   lvim.builtin.which_key.mappings["f"] = {
@@ -452,10 +456,39 @@ M.config = function()
   }
   lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", " Zen" }
   lvim.builtin.which_key.mappings["w"] = { "<cmd>w!<CR>", " Save" }
-  lvim.builtin.which_key.vmappings["g"] = {
+  lvim.builtin.which_key.mappings["g"] = {
     name = " Git",
+    -- g = { "<cmd>lua require 'lvim.core.terminal'.lazygit_toggle(12000)<cr>", "Lazygit" },
+    g = { "<cmd>Neogit<cr>", "Neogit" },
+    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+    l = { "<cmd>GitBlameToggle<cr>", "Blame" },
+    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    G = { "<cmd>Neogit<cr>", "Neogit" },
+    u = {
+      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+      "Undo Stage Hunk",
+    },
+    n = { ":!git checkout -b ", "Checkout New Branch" },
+    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+    f = { "<cmd>Telescope git_bcommits<cr>", "Checkout buffer commit" },
+    d = {
+      "<cmd>Gitsigns diffthis HEAD<cr>",
+      "Diff",
+    },
+    G = {
+      name = "Gist",
+      a = { "<cmd>Gist -b -a<cr>", "Create Anon" },
+      d = { "<cmd>Gist -d<cr>", "Delete" },
+      f = { "<cmd>Gist -f<cr>", "Fork" },
+      g = { "<cmd>Gist -b<cr>", "Create" },
+      l = { "<cmd>Gist -l<cr>", "List" },
+      p = { "<cmd>Gist -b -p<cr>", "Create Private" },
+    },
   }
   lvim.builtin.which_key.vmappings["r"] = {
     function()

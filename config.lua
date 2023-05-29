@@ -152,6 +152,7 @@ require("user.plugins").config()
 -- Autocommands
 -- =========================================
 require("user.autocommands").config()
+reload "user.bookmarks"
 
 -- Additional Keybindings
 -- =========================================

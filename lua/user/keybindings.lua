@@ -258,7 +258,7 @@ M.config = function()
   if status_ok_comment and cmt["toggle"] ~= nil then
     lvim.builtin.which_key.mappings["/"] = {
       "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
-      " Comment",
+      "󰆉 Comment",
     }
   else
     lvim.builtin.which_key.mappings["/"] = { "<Plug>(comment_toggle_linewise_current)", " Comment" }

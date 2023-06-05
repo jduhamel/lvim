@@ -6,9 +6,9 @@ M.default_diagnostic_config = {
     active = true,
     values = {
       { name = "DiagnosticSignError", text = kind.icons.error },
-      { name = "DiagnosticSignWarn", text = kind.icons.warn },
-      { name = "DiagnosticSignInfo", text = kind.icons.info },
-      { name = "DiagnosticSignHint", text = kind.icons.hint },
+      { name = "DiagnosticSignWarn",  text = kind.icons.warn },
+      { name = "DiagnosticSignInfo",  text = kind.icons.info },
+      { name = "DiagnosticSignHint",  text = kind.icons.hint },
     },
   },
   virtual_text = false,
@@ -63,10 +63,10 @@ M.config = function()
   -- =========================================
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp" },
-    { name = "cmp_tabnine", max_item_count = 3 },
-    { name = "buffer", max_item_count = 5, keyword_length = 5 },
-    { name = "path", max_item_count = 5 },
-    { name = "luasnip", max_item_count = 3 },
+    { name = "cmp_tabnine",  max_item_count = 3 },
+    { name = "buffer",       max_item_count = 5, keyword_length = 5 },
+    { name = "path",         max_item_count = 5 },
+    { name = "luasnip",      max_item_count = 3 },
     { name = "nvim_lua" },
     { name = "calc" },
     { name = "emoji" },
@@ -126,7 +126,7 @@ M.config = function()
         return vim_item
       end
       vim_item.kind =
-        string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
+          string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
 
       return vim_item
     end
@@ -176,7 +176,7 @@ M.config = function()
     sources = cmp.config.sources({
       { name = "nvim_lsp", max_item_count = 8 },
       { name = "crates" },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "luasnip",  max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -184,8 +184,8 @@ M.config = function()
   cmp.setup.filetype("tex", {
     sources = cmp.config.sources({
       { name = "latex_symbols", max_item_count = 3, keyword_length = 3 },
-      { name = "nvim_lsp", max_item_count = 8 },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "nvim_lsp",      max_item_count = 8 },
+      { name = "luasnip",       max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -383,13 +383,13 @@ M.config = function()
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
   local languages = vim.tbl_flatten {
-    { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-    { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    { "gomod", "graphql", "hcl", "help", "html", "java", "javascript", "jsdoc" },
-    { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-    { "markdown", "nix", "ocaml", "perl", "php", "python", "query", "r" },
-    { "regex", "rego", "ruby", "rust", "scala", "scss", "solidity", "swift" },
-    { "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+    { "bash",       "c",       "c_sharp", "cmake",      "comment", "cpp",    "css",        "d",    "dart" },
+    { "dockerfile", "elixir",  "elm",     "erlang",     "fennel",  "fish",   "go",         "gomod" },
+    { "gomod",      "graphql", "hcl",     "help",       "html",    "java",   "javascript", "jsdoc" },
+    { "json",       "jsonc",   "julia",   "kotlin",     "latex",   "ledger", "lua",        "make" },
+    { "markdown",   "nix",     "ocaml",   "perl",       "php",     "python", "query",      "r" },
+    { "regex",      "rego",    "ruby",    "rust",       "scala",   "scss",   "solidity",   "swift" },
+    { "teal",       "toml",    "tsx",     "typescript", "vim",     "vue",    "yaml",       "zig" },
   }
   lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
@@ -625,7 +625,7 @@ M.config = function()
   lvim.builtin.which_key.setup.icons = {
     breadcrumb = "/", -- symbol used in the command line area that shows your active key combo
     separator = "·", -- symbol used between a key and it's label
-    group = "", -- symbol prepended to a group
+    group = "",       -- symbol prepended to a group
   }
   lvim.builtin.which_key.setup.ignore_missing = true
 

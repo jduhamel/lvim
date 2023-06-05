@@ -309,7 +309,7 @@ M.config = function()
   }
 
   local path = vim.fn.glob(mason_path .. "packages/codelldb/extension/")
-    or vim.fn.expand "~/" .. ".vscode/extensions/vadimcn.vscode-lldb-1.8.1/"
+      or vim.fn.expand "~/" .. ".vscode/extensions/vadimcn.vscode-lldb-1.8.1/"
   local lldb_cmd = path .. "adapter/codelldb"
 
   dap.adapters.codelldb = {
@@ -335,6 +335,7 @@ M.config = function()
       end,
       cwd = "${workspaceFolder}",
       stopOnEntry = true,
+      runInTerminal = true,
     },
   }
   dap.configurations.c = dap.configurations.cpp

@@ -43,8 +43,8 @@ M.config = function()
         " ",
       },
       done = "", -- character shown when all tasks are complete
-      commenced = " ", -- message shown when task starts
-      completed = " ", -- message shown when task completes
+            commenced = " ", -- message shown when task starts
+            completed = " ", -- message shown when task completes
     },
     align = {
       bottom = true, -- align fidgets along bottom edge of buffer

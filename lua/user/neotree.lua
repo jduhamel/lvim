@@ -7,8 +7,22 @@ M.config = function()
     enable_diagnostics = true,
     source_selector = {
       winbar = true,
-      --      separator_active = " ",
+      separator_active = " ",
       statusline = true,
+      sources = {
+          {
+              source = "filesystem",
+              display_name = " 󰉓 Files ",
+          },
+          {
+            source = "buffers",
+              display_name = " 󰈙 Buffers ",
+          },
+          {
+            source = "git_status",
+              display_name = " 󰊢 Git ",
+          },
+      },
     },
     enable_git_status = true,
     git_status_async = true,

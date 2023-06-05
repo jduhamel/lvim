@@ -33,17 +33,19 @@ lvim.builtin.cheat = { active = true }                                   -- enab
 lvim.builtin.sql_integration = { active = true }                         -- use sql integration
 lvim.builtin.smooth_scroll = ""                                          -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
-lvim.builtin.nonumber_unfocus = false                                    -- diffrentiate between focused and non focused windows
-lvim.builtin.custom_web_devicons = true                                  -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
-lvim.builtin.harpoon = { active = true }                                 -- use the harpoon plugin
-lvim.builtin.remote_dev = { active = true }                              -- enable/disable remote development
-lvim.builtin.cursorline = { active = true }                              -- use a bit fancier cursorline
-lvim.builtin.motion_provider = "hop"                                     -- change this to use different motion providers ( hop or leap )
-lvim.builtin.hlslens = { active = true }                                 -- enable/disable hlslens
-lvim.builtin.csv_support = true                                          -- enable/disable csv support
-lvim.builtin.sidebar = { active = true }                                 -- enable/disable sidebar
-lvim.builtin.task_runner = ""                                            -- change this to use different task runners ( "async_tasks" or "overseer" or "")
-lvim.builtin.winbar_provider = "navic"                                   -- can be "filename" or "treesitter" or "navic" or ""
+lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
+lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
+lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
+lvim.builtin.remote_dev = { active = true } -- enable/disable remote development
+lvim.builtin.cursorline = { active = true } -- use a bit fancier cursorline
+lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap )
+lvim.builtin.hlslens = { active = true } -- enable/disable hlslens
+lvim.builtin.csv_support = true -- enable/disable csv support
+lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
+lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
+-- lvim.builtin.winbar_provider = "navic" -- can be "filename" or "treesitter" or "navic" or ""
+lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or "navic" or ""
+>>>>>>> a62c781d (Updated per upstream.)
 lvim.builtin.metals = {
   active = false,                                                        -- enable/disable nvim-metals for scala development
   fallbackScalaVersion = "3.2.0-RC3",

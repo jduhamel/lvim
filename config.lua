@@ -45,7 +45,6 @@ lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
 lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
 -- lvim.builtin.winbar_provider = "navic" -- can be "filename" or "treesitter" or "navic" or ""
 lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or "navic" or ""
->>>>>>> a62c781d (Updated per upstream.)
 lvim.builtin.metals = {
   active = false,                                                        -- enable/disable nvim-metals for scala development
   fallbackScalaVersion = "3.2.0-RC3",

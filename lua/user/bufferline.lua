@@ -108,106 +108,13 @@ M.config = function()
               end
             end
           end,
-          local res = table.concat(result, " ")
-          return #res > 0 and res or ""
-        end,
-        mode = "buffers",
-        sort_by = "insert_after_current",
-        always_show_bufferline = false,
-        groups = {
-            options = {
-                toggle_hidden_on_enter = true,
-            },
-            items = {
-                bufferline_groups.builtin.pinned:with { icon = "" },
-                bufferline_groups.builtin.ungrouped,
-                {
-                    name = "Internals",
-                    highlight = { fg = "#ECBE7B" },
-                    matcher = function(buf)
-                        return vim.startswith(buf.path, vim.env.VIMRUNTIME) or
-                            vim.startswith(buf.path, _G.get_runtime_dir())
-                    end,
-                },
-                {
-                    highlight = { sp = "#51AFEF" },
-                    name = "Tests",
-                    icon = kind.icons.test,
-                    matcher = function(buf)
-                        local name = vim.api.nvim_buf_get_name(buf.id)
-                        return name:match "_spec" or name:match "_test" or name:match "test_"
-                    end,
-                },
-                {
-                    name = "Terraform",
-                    matcher = function(buf)
-                        return buf.name:match "%.tf" ~= nil
-                    end,
-                },
-                {
-                    name = "SQL",
-                    matcher = function(buf)
-                        local name = vim.api.nvim_buf_get_name(buf.id)
-                        return name:match "%.sql$"
-                    end,
-                },
-                {
-                    name = "View models",
-                    highlight = { sp = "#03589C" },
-                    matcher = function(buf)
-                        local name = vim.api.nvim_buf_get_name(buf.id)
-                        return name:match "view_model%.dart"
-                    end,
-                },
-                {
-                    name = "Screens",
-                    icon = kind.icons.screen,
-                    matcher = function(buf)
-                        return buf.path:match "screen"
-                    end,
-                },
-                {
-                    highlight = { sp = "#C678DD" },
-                    name = "Docs",
-                    matcher = function(buf)
-                        for _, ext in ipairs { "md", "txt", "org", "norg", "wiki" } do
-                            if ext == vim.fn.fnamemodify(buf.path, ":e") then
-                                return true
-                            end
-                        end
-                    end,
-                },
-                {
-                    highlight = { sp = "#F6A878" },
-                    name = "Config",
-                    matcher = function(buf)
-                        local name = vim.api.nvim_buf_get_name(buf.id)
-                        local filename = vim.split(name, "/", { plain = true })[-1]
-                        if filename == nil then
-                            return false
-                        end
-                        return filename:match "go.mod"
-                            or filename:match "go.sum"
-                            or filename:match "Cargo.toml"
-                            or filename:match "manage.py"
-                            or filename:match "Makefile"
-                    end,
-                },
-                {
-                    name = "Terms",
-                    auto_close = true,
-                    matcher = function(buf)
-                        return buf.path:match "term://" ~= nil
-                    end,
-                },
-            },
         },
         {
           highlight = { sp = "#F6A878" },
           name = "Config",
           matcher = function(buf)
             local name = vim.api.nvim_buf_get_name(buf.id)
-            local filename_arr = vim.split(name, "/", { plain = true })[-1]
+            local filename_arr = vim.split(name, "/", { plain = true })
             local filename = nil
             if #filename_arr > 0 then
               filename = filename_arr[#filename_arr]

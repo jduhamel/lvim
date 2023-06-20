@@ -20,7 +20,16 @@ lvim.plugins = {
   { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
   { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
   { url = "git@github.com:LunarVim/primer.nvim.git" },
-  -- { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
+  { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
+  --
+  --
+  --TO ADD
+  --
+  -- allaman/kustomize Kubernetes ft. yaml
+  -- anuvyklack/pretty-fold.nvim
+  --       "simrat39/symbols-outline.nvim",
+  -- flutter.nvim
+  -- orgmode
   "stevearc/dressing.nvim",
   "AckslD/swenv.nvim",
   "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -28,7 +37,9 @@ lvim.plugins = {
   "nvim-treesitter/nvim-treesitter-textobjects",
   "mfussenegger/nvim-jdtls",
   "opalmay/vim-smoothie",
-  "j-hui/fidget.nvim",
+    {  "j-hui/fidget.nvim", -- TODO: Checkout legacy branch
+        branch = "legacy",
+    },
   "windwp/nvim-ts-autotag",
   "kylechui/nvim-surround",
   "christianchiarulli/harpoon",
@@ -84,10 +95,6 @@ lvim.plugins = {
   },
   { "christianchiarulli/telescope-tabs", branch = "chris" },
   "monaqa/dial.nvim",
-  {
-    "0x100101/lab.nvim",
-    build = "cd js && npm ci",
-  },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",

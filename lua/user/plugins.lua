@@ -25,7 +25,11 @@ M.config = function()
       opts = { defaults = true },
     },
     {
-      "TimUntersberger/neogit",
+      "NeogitOrg/neogit",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "sindrets/diffview.nvim",
+      },
       config = function()
         require("user.neogit").config()
       end,

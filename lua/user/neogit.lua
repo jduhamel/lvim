@@ -52,9 +52,11 @@ M.config = function()
         folded = true,
       },
       unpulled = {
+        hidden = true,
         folded = true,
       },
       unmerged = {
+        hidden = true,
         folded = false,
       },
       recent = {

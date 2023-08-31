@@ -1,0 +1,20 @@
+Failed to run `config` for neogit
+/Users/joe/.config/lvim/lua/user/plugins.lua:34:
+====Neogit Configuration Errors====
+Neogit has NOT been setup!
+You have a misconfiguration in your Neogit setup!
+Validate that your configuration passed to `require("neogit").setup()` is valid!
+------------------------------------
+Config value: `section.unpulled.hidden` had error -> Expected `section.unpulled.hidden` to be of type 'boolean', go
+t 'nil'
+Config value: `section.unmerged.hidden` had error -> Expected `section.unmerged.hidden` to be of type 'boolean', go
+t 'nil'
+# stacktrace:
+  - /neogit/lua/neogit/config.lua:628 _in_ **setup**
+  - /neogit/lua/neogit.lua:32 _in_ **setup**
+  - ~/.config/lvim/lua/user/neogit.lua:10 _in_ **config**
+  - ~/.config/lvim/lua/user/plugins.lua:34 _in_ **config**
+  - ~/.local/share/lunarvim/lvim/lua/lvim/plugin-loader.lua:106
+  - ~/.local/share/lunarvim/lvim/lua/lvim/plugin-loader.lua:104 _in_ **load**
+Press ENTER or type command to continue
+  - ~/.local/share/lunarvim/lvim/init.lua:17

@@ -25,6 +25,64 @@ M.config = function()
       opts = { defaults = true },
     },
     {
+      "ibhagwan/fzf-lua",
+      config = function()
+        -- calling `setup` is optional for customization
+        local ff = require "user.fzf"
+        require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
+      end,
+      enabled = not lvim.builtin.telescope.active,
+    },
+    {
+      "folke/flash.nvim",
+      event = "VeryLazy",
+      keys = require("user.flash").keys,
+      enabled = lvim.builtin.motion_provider == "flash",
+    },
+    {
+      "piersolenski/wtf.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+      },
+      event = "VeryLazy",
+      opts = {
+        popup_type = "vertical",
+      },
+      keys = {
+        {
+          "gw",
+          mode = { "n" },
+          function()
+            require("wtf").ai()
+          end,
+          desc = "Debug diagnostic with AI",
+        },
+        {
+          mode = { "n" },
+          "gW",
+          function()
+            require("wtf").search()
+          end,
+          desc = "Search diagnostic with Google",
+        },
+      },
+      enabled = true,
+    },
+    {
+      "james1236/backseat.nvim",
+      config = function()
+        require("backseat").setup {
+          highlight = {
+            icon = "󰳃 ",
+            group = "SpecialComment",
+          },
+                                  }
+      end,
+      event = "VeryLazy",
+      enabled = true,
+    },
+
+    {
       "NeogitOrg/neogit",
       dependencies = {
         "nvim-lua/plenary.nvim",

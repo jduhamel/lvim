@@ -24,6 +24,12 @@ M.config = function()
     plugins = "N/A"
   end
 
+  local minor_len = string.len(vim.version().minor)
+  local empty_space = ""
+  for _ = 1, minor_len do
+    empty_space = empty_space .. " "
+  end
+
   local plugin_count = {
     type = "text",
     val = "└─ "
@@ -45,7 +51,7 @@ M.config = function()
 
   local heading = {
     type = "text",
-    val = "┌─ " .. kind.icons.calendar .. " Today is " .. date .. " ─┐",
+    val = "┌─ " .. kind.icons.calendar .. empty_space .. " Today is " .. date .. " ─┐",
     opts = {
       position = "center",
       hl = "String",
@@ -101,7 +107,7 @@ M.config = function()
         "<cmd>lua require('user.telescope').find_project_files()<CR>"
       ),
       button("e", " " .. kind.cmp_kind.File .. " New file", ":ene <BAR> startinsert <CR>"),
-      button("s", " " .. kind.icons.magic .. " Restore", ":lua require('persistence').load()<cr>"),
+      button("s", " " .. kind.icons.magic .. " Restore", ":lua require('persisted').load()<cr>"),
       button("g", " " .. kind.icons.git .. " Git Status", "Neogit<cr>"),
       button("r", " " .. kind.icons.clock .. " Recents", ":Telescope oldfiles<CR>"),
       button("c", " " .. kind.icons.settings .. " Config", ":e ~/.config/lvim/config.lua<CR>"),

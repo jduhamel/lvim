@@ -297,14 +297,11 @@ M.config = function()
       event = "BufReadPre",
     },
     {
-      "folke/persistence.nvim",
-      event = "BufReadPre",
-      lazy = true,
-      config = function()
-        require("persistence").setup {
-          dir = vim.fn.expand(get_cache_dir() .. "/sessions/"), -- directory where session files are saved
-          options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
-        }
+              "olimorris/persisted.nvim",
+              event = "BufReadPre",
+              lazy = true,
+              config = function()
+        require("user.persist").config()
       end,
       enabled = lvim.builtin.persistence.active,
     },
@@ -893,6 +890,60 @@ M.config = function()
       enabled = lvim.builtin.mind.active,
     },
     { "vlime/vlime", rtp = "vim/" },
+    {    "ibhagwan/fzf-lua",
+         config = function()
+           -- calling `setup` is optional for customization
+           local ff = require "user.fzf"
+           require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
+         end,
+         enabled = not lvim.builtin.telescope.active,
+    },
+    {
+      "folke/flash.nvim",
+      event = "VeryLazy",
+      keys = require("user.flash").keys,
+      enabled = lvim.builtin.motion_provider == "flash",
+    },
+    {
+      "piersolenski/wtf.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+      },
+      event = "VeryLazy",
+      opts = {
+        popup_type = "vertical",
+      },
+      keys = {
+        {
+          "gw",
+          mode = { "n" },
+          function()
+            require("wtf").ai()
+          end,
+          desc = "Debug diagnostic with AI",
+        },
+        {
+          mode = { "n" },
+          "gW",
+          function()
+            require("wtf").search()
+          end,
+          desc = "Search diagnostic with Google",
+        },
+      },
+      enabled = lvim.builtin.sell_your_soul_to_devil.openai,
+    },
+    {
+      "james1236/backseat.nvim",
+      config = function()
+        require("backseat").setup {
+          highlight = {
+            icon = "󰳃 ",
+            group = "SpecialComment",
+          },
+        }
+      end
+    },
     {
       "dstein64/vim-startuptime",
       -- lazy-load on a command

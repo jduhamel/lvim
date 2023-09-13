@@ -20,7 +20,7 @@ local opts = {
         parameterNames = true,
         rangeVariableTypes = true,
       },
-      diagnosticsDelay = "200ms",
+      diagnosticsDelay = "300ms",
       symbolMatcher = "fuzzy",
       completeUnimported = true,
       staticcheck = true,

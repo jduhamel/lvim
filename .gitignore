@@ -1,7 +1,7 @@
 # Lazy spesific files
 lazy-lock.json 
 
-
+.idea
 # Compiled Lua sources
 luac.out
 .java-debug

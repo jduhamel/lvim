@@ -115,7 +115,7 @@ lvim.plugins = {
   - `lvim.builtin.smooth_scroll= ""`
 - if you want an obvious focused window, and you don't get seizures from it
   - `lvim.builtin.nonumber_unfocus = true`
-- choose between [hop](https://github.com/phaazon/hop.nvim) and [leap](https://github.com/ggandor/leap.nvim) as your favorite motion provider
+- choose between [hop](https://github.com/phaazon/hop.nvim) and [leap](https://github.com/ggandor/leap.nvim) or [flash](https://github.com/folke/flash.nvim) as your favorite motion provider
   - `lvim.builtin.motion_provider = "hop"`
 - choose between [filename->incline](https://github.com/b0o/incline.nvim) and [treesitter->winbar](https://github.com/fgheng/winbar.nvim) or [navic](https://github.com/SmiteshP/nvim-navic) as your winbar provider
   - `lvim.builtin.winbar_provider = "treesitter"`
@@ -127,7 +127,7 @@ lvim.plugins = {
   - `lvim.builtin.tree_provider = "neo-tree"`
 - you can use noice.nvim if you want
   - `lvim.builtin.noice = { active = true }`
-- If you wanna see the issues, remove `lvim.lsp.diagnostics.virtual_text = false`
+- If you wanna see the issues, change `default_diagnostic_config.virtual_text` inside `builtin.lua`
 - I'm using `skim` for `latex` stuff, change it to `zathura` if you are on `linux`
 
 <!--
@@ -169,7 +169,7 @@ brew install node
 </details>
 
 ```shell
-# install LunarVim
+bash <(curl -s "https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh")
 mv ~/.config/lvim ~/.config/lvim_backup
 git clone https://github.com/abzcoding/lvim.git ~/.config/lvim
 lvim +LvimUpdate +LvimCacheReset +q
@@ -410,10 +410,11 @@ _Symbols Outline_
 ### Optional Plugins
 
 - [Hop](https://github.com/phaazon/hop.nvim)
+- [Flash](https://github.com/folke/flash.nvim)
 - [Leap](https://github.com/ggandor/leap.nvim)
 - [remember.nvim](https://github.com/vladdoster/remember.nvim)
 - [Tabnine](https://github.com/tzachar/compe-tabnine)
-- [Persistence](https://github.com/folke/persistence.nvim)
+- [Persistence](https://github.com/olimorris/persisted.nvim)
 - [Presence](https://github.com/andweeb/presence.nvim)
 - [Orgmode.nvim](https://github.com/kristijanhusak/orgmode.nvim)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
@@ -439,7 +440,6 @@ _Symbols Outline_
 - [instant.nvim](https://github.com/jbyuki/instant.nvim)
 - [SnipRun](https://github.com/michaelb/sniprun)
 - [Vista](https://github.com/liuchengxu/vista.vim)
-- [editorconfig-vim](https://github.com/editorconfig/editorconfig-vim)
 - [dressing.nvim](https://github.com/stevearc/dressing.nvim)
 - [incline.nvim](https://github.com/b0o/incline.nvim)
 - [winbar.nvim](https://github.com/fgheng/winbar.nvim)
@@ -453,8 +453,9 @@ _Symbols Outline_
 - [inc-rename](https://github.com/smjonas/inc-rename.nvim)
 - [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
 - [cmake-tools.nvim](https://github.com/Civitasv/cmake-tools.nvim)
-- [lsp-inlayhints.nvim](https://github.com/lvimuser/lsp-inlayhints.nvim)
 - [mind.nvim](https://github.com/phaazon/mind.nvim)
+- [wtf.nvim](https://github.com/piersolenski/wtf.nvim)
+- [backseat.nvim](https://github.com/james1236/backseat.nvim)
 
 </details>
 
@@ -500,34 +501,35 @@ Note that,
 
 ### UI
 
-| Key                                                           | Mode | Action              | Plugin or Mapping                             |
-| ------------------------------------------------------------- | :--: | ------------------- | --------------------------------------------- |
-| <kbd>Space</kbd>+<kbd>e</kbd>                                 |  𝐍   | Open file tree      | <small>NvimTree</small>                       |
-| <kbd>Space</kbd>+<kbd>o</kbd>                                 |  𝐍   | Open symbols        | <small>Symbols-outline</small>                |
-| <kbd>Space</kbd>+<kbd>f</kbd>                                 |  𝐍   | Open file finder    | <small>Telescope</small>                      |
-| <kbd>Space</kbd>+<kbd>h</kbd>                                 |  𝐍   | Remove highlight    | <small>`nohlsearch<`</small>                  |
-| <kbd>Space</kbd>+<kbd>/</kbd>                                 |  𝐍   | Toggle comment      | <small>Comment.nvim</small>                   |
-| <kbd>Space</kbd>+<kbd>?</kbd>                                 |  𝐍   | Open cheats         | <small>cheat.sh</small>                       |
-| <kbd>Space</kbd>+<kbd>'</kbd>                                 |  𝐍   | Open marks          | <small>which-key marks</small>                |
-| <kbd>Space</kbd>+<kbd>z</kbd>                                 |  𝐍   | Zen mode            | <small>zen-mode.nvim</small>                  |
-| <kbd>Space</kbd>+<kbd>P</kbd>                                 |  𝐍   | Projects            | <small>project.nvim</small>                   |
-| <kbd>Ctrl</kbd>+<kbd>\</kbd>                                  | 𝐈 𝐍  | Open terminal       | <small>toggleterm.nvim</small>                |
-| <kbd>Alt</kbd>+<kbd>0</kbd>                                   | 𝐈 𝐍  | Vertical terminal   | <small>toggleterm.nvim</small>                |
-| <kbd>Ctrl</kbd>+<kbd>s</kbd>                                  |  𝐈   | Show signature help | <small>`vim.lsp.buf.signature_help()`</small> |
-| <kbd>Alt</kbd>+<kbd>s</kbd>                                   |  𝐈   | Snippet selection   | <small>Telescope luasnip extension</small>    |
-| <kbd>Space</kbd>+<kbd>C</kbd> or <kbd>Ctrl</kbd>+<kbd>P</kbd> |  𝐍   | Command Palette     | <small>legendary.nvim</small>                 |
+| Key                                                           | Mode | Action              | Plugin or Mapping                                         |
+| ------------------------------------------------------------- | :--: | ------------------- | --------------------------------------------------------- |
+| <kbd>Space</kbd>+<kbd>e</kbd>                                 |  𝐍   | Open file tree      | <small>NvimTree</small>                                   |
+| <kbd>Space</kbd>+<kbd>o</kbd>                                 |  𝐍   | Open symbols        | <small>Symbols-outline</small>                            |
+| <kbd>Space</kbd>+<kbd>f</kbd>                                 |  𝐍   | Open file finder    | <small>Telescope</small>                                  |
+| <kbd>Space</kbd>+<kbd>h</kbd>                                 |  𝐍   | Remove highlight    | <small>`nohlsearch<`</small>                              |
+| <kbd>Space</kbd>+<kbd>/</kbd>                                 |  𝐍   | Toggle comment      | <small>Comment.nvim</small>                               |
+| <kbd>Space</kbd>+<kbd>?</kbd>                                 |  𝐍   | Open cheats         | <small>cheat.sh</small>                                   |
+| <kbd>Space</kbd>+<kbd>I</kbd>                                 |  𝐍   | Inlay Hints         | <small>`require('vim.lsp._inlay_hint').refresh()`</small> |
+| <kbd>Space</kbd>+<kbd>'</kbd>                                 |  𝐍   | Open marks          | <small>which-key marks</small>                            |
+| <kbd>Space</kbd>+<kbd>z</kbd>                                 |  𝐍   | Zen mode            | <small>zen-mode.nvim</small>                              |
+| <kbd>Space</kbd>+<kbd>P</kbd>                                 |  𝐍   | Projects            | <small>project.nvim</small>                               |
+| <kbd>Ctrl</kbd>+<kbd>\</kbd>                                  | 𝐈 𝐍  | Open terminal       | <small>toggleterm.nvim</small>                            |
+| <kbd>Alt</kbd>+<kbd>0</kbd>                                   | 𝐈 𝐍  | Vertical terminal   | <small>toggleterm.nvim</small>                            |
+| <kbd>Ctrl</kbd>+<kbd>s</kbd>                                  |  𝐈   | Show signature help | <small>`vim.lsp.buf.signature_help()`</small>             |
+| <kbd>Alt</kbd>+<kbd>s</kbd>                                   |  𝐈   | Snippet selection   | <small>Telescope luasnip extension</small>                |
+| <kbd>Space</kbd>+<kbd>C</kbd> or <kbd>Ctrl</kbd>+<kbd>P</kbd> |  𝐍   | Command Palette     | <small>legendary.nvim</small>                             |
 
 ### Motion
 
-| Key                         | Mode | Action                  | Plugin or Mapping                                             |
-| --------------------------- | :--: | ----------------------- | ------------------------------------------------------------- |
-| <kbd>f</kbd>                |  𝐍   | find next character     | <small>HopChar1CurrentLineAC</small> or <small>leap_f</small> |
-| <kbd>F</kbd>                |  𝐍   | find previous character | <small>HopChar1CurrentLineBC</small> or <small>leap_F</small> |
-| <kbd>s</kbd>                |  𝐍   | find character          | <small>HopChar2MW</small> or <small>leap_s</small>            |
-| <kbd>S</kbd>                |  𝐍   | find word               | <small>HopWordMW</small> or <small>leap_S</small>             |
-| <kbd>Alt</kbd>+<kbd>a</kbd> |  𝐈   | select all              | <small>ggVG</small>                                           |
-| <kbd>Alt</kbd>+<kbd>a</kbd> |  𝐍   | increment number        | <small>C-A</small>                                            |
-| <kbd>Alt</kbd>+<kbd>x</kbd> |  𝐍   | decrement number        | <small>C-X</small>                                            |
+| Key                         | Mode | Action                  | Plugin or Mapping                                                                                 |
+| --------------------------- | :--: | ----------------------- | ------------------------------------------------------------------------------------------------- |
+| <kbd>f</kbd>                |  𝐍   | find next character     | <small>HopChar1CurrentLineAC</small> or <small>leap_f</small> or <small>Flash.CharActions</small> |
+| <kbd>F</kbd>                |  𝐍   | find previous character | <small>HopChar1CurrentLineBC</small> or <small>leap_F</small> or <small>Flash.CharActions</small> |
+| <kbd>s</kbd>                |  𝐍   | find character          | <small>HopChar2MW</small> or <small>leap_s</small> or <small>require("flash").jump()</small>      |
+| <kbd>S</kbd>                |  𝐍   | find word               | <small>HopWordMW</small> or <small>leap_S</small> or <small>2char jump</small>                    |
+| <kbd>Alt</kbd>+<kbd>a</kbd> |  𝐈   | select all              | <small>ggVG</small>                                                                               |
+| <kbd>Alt</kbd>+<kbd>a</kbd> |  𝐍   | increment number        | <small>C-A</small>                                                                                |
+| <kbd>Alt</kbd>+<kbd>x</kbd> |  𝐍   | decrement number        | <small>C-X</small>                                                                                |
 
 ### LSP
 
@@ -640,11 +642,11 @@ Note that,
 
 ### Plugin: Persistence
 
-| Key                                        | Mode | Action                                |
-| ------------------------------------------ | :--: | ------------------------------------- |
-| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>d</kbd> |  𝐍   | Quit without saving session           |
-| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>l</kbd> |  𝐍   | Restore last session                  |
-| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>s</kbd> |  𝐍   | Restore last session from current dir |
+| Key                                        | Mode | Action         |
+| ------------------------------------------ | :--: | -------------- |
+| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>d</kbd> |  𝐍   | Delete Session |
+| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>l</kbd> |  𝐍   | Load Session   |
+| <kbd>Space</kbd>+<kbd>q</kbd>+<kbd>s</kbd> |  𝐍   | Save Session   |
 
 ### Plugin: Bufferline
 
@@ -745,7 +747,7 @@ Note that,
 | ----------------------------- | :--: | -------------------------------- |
 | <kbd>Space</kbd>+<kbd>e</kbd> |  𝐍   | Toggle tree                      |
 | <kbd>></kbd> and <kbd><</kbd> |  𝐍   | Next and prev source inside tree |
-| <kbd><cr></kbd>               |  𝐍   | Open                             |
+| <kbd>Enter</kbd>              |  𝐍   | Open                             |
 | <kbd>s</kbd>                  |  𝐍   | Open in vertical split           |
 | <kbd>S</kbd>                  |  𝐍   | Open in horizontal spit          |
 | <kbd>H</kbd>                  |  𝐍   | Toggle hidden files              |
@@ -763,9 +765,9 @@ Note that,
 | ------------------------------------------ | :--: | ----------------- |
 | <kbd>Space</kbd>+<kbd>M</kbd>+<kbd>M</kbd> |  𝐍   | Open Main Tree    |
 | <kbd>Space</kbd>+<kbd>M</kbd>+<kbd>m</kbd> |  𝐍   | Open Local Tree   |
-| <kbd><cr></kbd>                            |  𝐍   | open data         |
-| <kbd><tab></kbd>                           |  𝐍   | toggle node       |
-| <kbd><s-tab></kbd>                         |  𝐍   | toggle parent     |
+| <kbd>Enter</kbd>                           |  𝐍   | open data         |
+| <kbd>Tab</kbd>                             |  𝐍   | toggle node       |
+| <kbd>Shift</kbd>+<kbd>Tab</kbd>            |  𝐍   | toggle parent     |
 | <kbd>/</kbd>                               |  𝐍   | select path       |
 | <kbd>$</kbd>                               |  𝐍   | change icons menu |
 | <kbd>c</kbd>                               |  𝐍   | create new node   |

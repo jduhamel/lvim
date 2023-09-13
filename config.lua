@@ -19,7 +19,7 @@ vim.diagnostic.config { virtual_text = true }
 
 -- Customization
 -- =========================================
-lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false } -- if you want microsoft to abuse your soul
+lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false , openai = false} -- if you want microsoft to abuse your soul
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
@@ -36,11 +36,11 @@ lvim.builtin.sql_integration = { active = true } -- use sql integration
 lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
-lvim.builtin.custom_web_devicons = true -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
+lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = true } -- enable/disable remote development
 lvim.builtin.cursorline = { active = true } -- use a bit fancier cursorline
-lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap )
+lvim.builtin.motion_provider = "flash" -- change this to use different motion providers ( hop or leap )
 lvim.builtin.hlslens = { active = true } -- enable/disable hlslens
 lvim.builtin.csv_support = true -- enable/disable csv support
 lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
@@ -80,6 +80,7 @@ lvim.builtin.colored_args = true -- if true then sets up hlargs.nvim
 lvim.builtin.bigfile.active = true
 lvim.builtin.inlay_hints = { active = true } -- enable/disable inlay hints
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
+lvim.builtin.inlay_hints =  {active = true }--lvim.builti
 
 -- Custom User Config
 -- =========================================

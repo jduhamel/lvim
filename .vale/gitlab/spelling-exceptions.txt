@@ -28,6 +28,8 @@ Bepa
 Bhyve
 Bitbucket
 Blankline
+Blockchain
+Bootloader
 Bootsnap
 Bugzilla
 Buildkite
@@ -56,6 +58,7 @@ Corosync
 Coursier
 Crossplane
 CrowdIn
+Cryptocurrency
 Cyber
 DDOS
 Dangerfile
@@ -67,6 +70,7 @@ Deserialization
 Deserializer
 DevOps
 Disqus
+Distros
 Divio
 Dockerfile
 Dockerfiles

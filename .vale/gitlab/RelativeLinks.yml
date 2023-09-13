@@ -8,6 +8,6 @@ extends: existence
 message: 'Link "%s" must be a relative link with a .md extension.'
 link: https://docs.gitlab.com/ee/development/documentation/styleguide/index.html#links-to-internal-documentation
 level: error
-scope: raw
+scope: link
 raw:
   - '\[.+\]\(https?:\/\/docs\.gitlab\.com\/[ce]e.*\)'

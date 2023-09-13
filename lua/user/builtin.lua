@@ -44,6 +44,11 @@ M.default_diagnostic_config = {
 }
 
 M.config = function()
+  if lvim.builtin.lsp_lines then
+    M.default_diagnostic_config.virtual_text = false
+  end
+
+  vim.diagnostic.config(M.default_diagnostic_config)
   local kind = require "user.lsp_kind"
 
   -- Autopairs
@@ -101,20 +106,20 @@ M.config = function()
     nvim_lua = "(NvLua)",
   }
   if lvim.builtin.borderless_cmp then
-    vim.opt.pumblend = 10
+    vim.opt.pumblend = 4
     lvim.builtin.cmp.formatting.fields = { "abbr", "kind", "menu" }
     lvim.builtin.cmp.window = {
       completion = {
-        border = "rounded", -- cmp_border,
+        border = cmp_border, -- "cmp_borounded", -- cmp_border,
         --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
-        col_offset = -3,
-        side_padding = 1,
-        scrollbar = false,
+        --        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+        --      col_offset = -3,
+        --    side_padding = 1,
+        --  scrollbar = false,
         -- scrollbar = { position = 'inside' }
       },
       documentation = {
-        border = "rounded", -- cmp_border,
+        border = cmp_border, -- "rounded",
         --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
         winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
       },
@@ -383,13 +388,13 @@ M.config = function()
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
   local languages = vim.tbl_flatten {
-    { "bash",       "c",       "c_sharp", "cmake",      "comment", "cpp",    "css",        "d",    "dart" },
-    { "dockerfile", "elixir",  "elm",     "erlang",     "fennel",  "fish",   "go",         "gomod" },
-    { "gomod",      "graphql", "hcl",     "vimdoc",       "html",    "java",   "javascript", "jsdoc" },
-    { "json",       "jsonc",   "julia",   "kotlin",     "latex",   "ledger", "lua",        "make" },
-    { "markdown",   "nix",     "ocaml",   "perl",       "php",     "python", "query",      "r" },
-    { "regex",      "rego",    "ruby",    "rust",       "scala",   "scss",   "solidity",   "swift" },
-    { "teal",       "toml",    "tsx",     "typescript", "vim",     "vue",    "yaml",       "zig" },
+    { "bash",       "c",               "c_sharp", "cmake",  "comment",    "cpp",    "css",        "d",    "dart" },
+    { "dockerfile", "elixir",          "elm",     "erlang", "fennel",     "fish",   "go",         "gomod" },
+    { "gomod",      "graphql",         "hcl",     "vimdoc", "html",       "java",   "javascript", "jsdoc" },
+    { "json",       "jsonc",           "julia",   "kotlin", "latex",      "ledger", "lua",        "make" },
+    { "markdown",   "markdown_inline", "nix",     "ocaml",  "perl",       "php",    "python" },
+    { "query",      "r",               "regex",   "rego",   "ruby",       "rust",   "scala",      "scss", "solidity" },
+    { "swift",      "teal",            "toml",    "tsx",    "typescript", "vim",    "vue",        "yaml", "zig" },
   }
   lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
@@ -603,6 +608,8 @@ M.config = function()
     end,
     find_command = { "fd", "--type=file", "--hidden" },
   }
+  lvim.builtin.telescope.pickers.buffers.sort_lastused = true
+  lvim.builtin.telescope.pickers.buffers.sort_mru = true
   lvim.builtin.telescope.pickers.sort_lastused = true
   lvim.builtin.telescope.pickers.sort_mru = true
   lvim.builtin.telescope.on_config_done = function(telescope)
@@ -625,7 +632,7 @@ M.config = function()
   lvim.builtin.which_key.setup.icons = {
     breadcrumb = "/", -- symbol used in the command line area that shows your active key combo
     separator = "·", -- symbol used between a key and it's label
-    group = "",       -- symbol prepended to a group
+    group = "", -- symbol prepended to a group
   }
   lvim.builtin.which_key.setup.ignore_missing = true
 
@@ -644,49 +651,47 @@ M.config = function()
   end
 end
 
--- function M.tab(fallback)
---     local methods = require("lvim.core.cmp").methods
---     local cmp = require "cmp"
---     local luasnip = require "luasnip"
---     local copilot_keys = vim.fn["copilot#Accept"]()
---     if cmp.visible() then
---         cmp.select_next_item()
---     elseif vim.api.nvim_get_mode().mode == "c" then
---         fallback()
---     elseif luasnip.expand_or_locally_jumpable() then
---         luasnip.expand_or_jump()
---     elseif copilot_keys ~= "" then -- prioritise copilot over snippets
---         -- Copilot keys do not need to be wrapped in termcodes
---         vim.api.nvim_feedkeys(copilot_keys, "i", true)
---     elseif methods.jumpable(1) then
---         luasnip.jump(1)
---     elseif methods.has_words_before() then
---         -- cmp.complete()
---         fallback()
---     else
---         methods.feedkeys("<Plug>(Tabout)", "")
---     end
--- end
+function M.tab(fallback)
+  local methods = require("lvim.core.cmp").methods
+  local luasnip = require "luasnip"
+  local copilot_keys = vim.fn["copilot#Accept"]()
+  if cmp.visible() then
+    cmp.select_next_item()
+  elseif vim.api.nvim_get_mode().mode == "c" then
+    fallback()
+  elseif luasnip.expand_or_locally_jumpable() then
+    luasnip.expand_or_jump()
+  elseif copilot_keys ~= "" then -- prioritise copilot over snippets
+    -- Copilot keys do not need to be wrapped in termcodes
+    vim.api.nvim_feedkeys(copilot_keys, "i", true)
+  elseif methods.jumpable(1) then
+    luasnip.jump(1)
+  elseif methods.has_words_before() then
+    -- cmp.complete()
+    fallback()
+  else
+    methods.feedkeys("<Plug>(Tabout)", "")
+  end
+end
 
--- function M.shift_tab(fallback)
---   local methods = require("lvim.core.cmp").methods
---   local luasnip = require "luasnip"
---   local cmp = require "cmp"
---   if cmp.visible() then
---     cmp.select_prev_item()
---   elseif vim.api.nvim_get_mode().mode == "c" then
---     fallback()
---   elseif luasnip.jumpable(-1) then
---     luasnip.jump(-1)
---   else
---     local copilot_keys = vim.fn["copilot#Accept"]()
---     if copilot_keys ~= "" then
---       methods.feedkeys(copilot_keys, "i")
---     else
---       methods.feedkeys("<Plug>(Tabout)", "")
---     end
---   end
--- end
+function M.shift_tab(fallback)
+  local methods = require("lvim.core.cmp").methods
+  local luasnip = require "luasnip"
+  if cmp.visible() then
+    cmp.select_prev_item()
+  elseif vim.api.nvim_get_mode().mode == "c" then
+    fallback()
+  elseif luasnip.jumpable(-1) then
+    luasnip.jump(-1)
+  else
+    local copilot_keys = vim.fn["copilot#Accept"]()
+    if copilot_keys ~= "" then
+      methods.feedkeys(copilot_keys, "i")
+    else
+      methods.feedkeys("<Plug>(Tabout)", "")
+    end
+  end
+end
 
 -- credit: https://github.com/max397574/NeovimConfig/blob/master/lua/configs/lsp/init.lua
 M.codes = {
@@ -696,11 +701,11 @@ M.codes = {
     "ovl_no_viable_function_in_call",
   },
   different_requires = {
-    message = " Buddy you've imported this before, with the same name",
+    message = " Buddy you've imported this before, with the same name",
     "different-requires",
   },
   empty_block = {
-    message = " That shouldn't be empty here",
+    message = " That shouldn't be empty here",
     "empty-block",
   },
   missing_symbol = {
@@ -714,7 +719,7 @@ M.codes = {
     "invalid_token_after_toplevel_declarator",
   },
   redefinition = {
-    message = " That variable was defined before",
+    message = " That variable was defined before",
     "redefinition",
     "redefined-local",
   },
@@ -729,11 +734,11 @@ M.codes = {
     "trailing-space",
   },
   unused_variable = {
-    message = " Don't define variables you don't use",
+    message = " Don't define variables you don't use",
     "unused-local",
   },
   unused_function = {
-    message = " Don't define functions you don't use",
+    message = " Don't define functions you don't use",
     "unused-function",
   },
   useless_symbols = {
@@ -741,9 +746,10 @@ M.codes = {
     "unknown-symbol",
   },
   wrong_type = {
-    message = " Try to use the correct types",
+    message = " Try to use the correct types",
     "init_conversion_failed",
   },
+  message = " Remember the `;` or `,`",
   undeclared_variable = {
     message = " Have you delcared that variable somewhere?",
     "undeclared_var_use",

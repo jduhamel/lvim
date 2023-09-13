@@ -13,13 +13,40 @@ M.set_wezterm_keybindings = function()
   lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
 end
 
+M.fzf_projects = function()
+  local fzf_lua = require "fzflua"
+  local history = require "project_nvim.utils.history"
+  fzf_lua.fzf_exec(function(cb)
+      local results = history.get_recent_projects()
+      for _, e in ipairs(results) do
+        cb(e)
+      end
+      cb()
+  end, {
+      actions = {
+        ["default"] = {
+          function(selected)
+            fzf_lua.files { cwd = selected[1] }
+          end,
+        },
+        ["ctrld"] = {
+          function(selected)
+            history.delete_project { value = selected[1] }
+          end,
+          fzf_lua.actions.resume,
+        },
+      },
+  })
+
+end
+
 M.set_terminal_keymaps = function()
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+    local opts = { noremap = true }
+    vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
 M.set_hop_keymaps = function()
@@ -263,7 +290,7 @@ M.config = function()
   else
     lvim.builtin.which_key.mappings["/"] = { "<Plug>(comment_toggle_linewise_current)", " Comment" }
   end
-  lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "舘Dashboard" }
+  lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "󰕮 Dashboard" }
   if lvim.builtin.dap.active then
     lvim.builtin.which_key.mappings["de"] = { "<cmd>lua require('dapui').eval()<cr>", "Eval" }
     lvim.builtin.which_key.mappings["dU"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI" }
@@ -365,9 +392,10 @@ M.config = function()
   if lvim.builtin.persistence then
     lvim.builtin.which_key.mappings["q"] = {
       name = "󰗼 Quit",
-      d = { "<cmd>lua require('persistence').stop()<cr> | :qa!<cr>", "Quit without saving session" },
-      l = { "<cmd>lua require('persistence').load(last=true)<cr>", "Restore last session" },
-      s = { "<cmd>lua require('persistence').load()<cr>", "Restore for current dir" },
+
+      d = { "<cmd>SessionDelete<cr>", "Delete Session" },
+      l = { "<cmd>SessionLoad<cr>", "Load Session" },
+      s = { "<cmd>SessionSave<cr>", "Save Session" },
       q = { "<cmd>confirm q<CR>", "Quit" },
     }
   end

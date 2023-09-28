@@ -1,14 +1,29 @@
 local M = {}
 local kind = require "user.lsp_kind"
 
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok or cmp == nil then
+  cmp = {
+    mapping = function(...) end,
+    setup = {
+      filetype = function(...) end,
+      cmdline = function(...) end,
+    },
+    config = {
+      sources = function(...) end,
+    },
+  }
+end
+
+
 M.default_diagnostic_config = {
   signs = {
     active = true,
     values = {
       { name = "DiagnosticSignError", text = kind.icons.error },
-      { name = "DiagnosticSignWarn", text = kind.icons.warn },
-      { name = "DiagnosticSignInfo", text = kind.icons.info },
-      { name = "DiagnosticSignHint", text = kind.icons.hint },
+      { name = "DiagnosticSignWarn",  text = kind.icons.warn },
+      { name = "DiagnosticSignInfo",  text = kind.icons.info },
+      { name = "DiagnosticSignHint",  text = kind.icons.hint },
     },
   },
   virtual_text = false,
@@ -47,9 +62,7 @@ M.config = function()
   if lvim.builtin.lsp_lines then
     M.default_diagnostic_config.virtual_text = false
   end
-
   vim.diagnostic.config(M.default_diagnostic_config)
-  local kind = require "user.lsp_kind"
 
   -- Autopairs
   -- =========================================
@@ -66,12 +79,26 @@ M.config = function()
 
   -- CMP
   -- =========================================
+  local comparators = {
+    cmp.config.compare.offset,
+    cmp.config.compare.exact,
+    cmp.config.compare.score,
+    cmp.config.compare.recently_used,
+    cmp.config.compare.locality,
+    cmp.config.compare.kind,
+    cmp.config.compare.length,
+    cmp.config.compare.order,
+  }
+  lvim.builtin.cmp.sorting = {
+    priority_weight = 2,
+    comparators = comparators,
+  }
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp" },
-    { name = "cmp_tabnine", max_item_count = 3 },
-    { name = "buffer", max_item_count = 5, keyword_length = 5 },
-    { name = "path", max_item_count = 5 },
-    { name = "luasnip", max_item_count = 3 },
+    { name = "cmp_tabnine",  max_item_count = 3 },
+    { name = "buffer",       max_item_count = 5, keyword_length = 5 },
+    { name = "path",         max_item_count = 5 },
+    { name = "luasnip",      max_item_count = 3 },
     { name = "nvim_lua" },
     { name = "calc" },
     { name = "emoji" },
@@ -80,13 +107,11 @@ M.config = function()
     { name = "crates" },
     { name = "orgmode" },
   }
-
   lvim.builtin.cmp.experimental = {
     ghost_text = false,
     native_menu = false,
     custom_menu = true,
   }
-
   local cmp_border = {
     { "╭", "CmpBorder" },
     { "─", "CmpBorder" },
@@ -110,18 +135,12 @@ M.config = function()
     lvim.builtin.cmp.formatting.fields = { "abbr", "kind", "menu" }
     lvim.builtin.cmp.window = {
       completion = {
-        border = cmp_border, -- "cmp_borounded", -- cmp_border,
-        --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        --        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
-        --      col_offset = -3,
-        --    side_padding = 1,
-        --  scrollbar = false,
-        -- scrollbar = { position = 'inside' }
+        border = cmp_border,
+        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
       },
       documentation = {
-        border = cmp_border, -- "rounded",
-        --    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-        winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
+        border = cmp_border,
+        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
       },
     }
     lvim.builtin.cmp.formatting.format = function(entry, vim_item)
@@ -131,7 +150,7 @@ M.config = function()
         return vim_item
       end
       vim_item.kind =
-        string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
+          string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
 
       return vim_item
     end
@@ -181,7 +200,7 @@ M.config = function()
     sources = cmp.config.sources({
       { name = "nvim_lsp", max_item_count = 8 },
       { name = "crates" },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "luasnip",  max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -189,8 +208,8 @@ M.config = function()
   cmp.setup.filetype("tex", {
     sources = cmp.config.sources({
       { name = "latex_symbols", max_item_count = 3, keyword_length = 3 },
-      { name = "nvim_lsp", max_item_count = 8 },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "nvim_lsp",      max_item_count = 8 },
+      { name = "luasnip",       max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -303,6 +322,8 @@ M.config = function()
   -- =========================================
   lvim.builtin.mason.ui.icons = kind.mason
 
+  -- Noice
+  -- =========================================
   if lvim.builtin.noice.active then
     local found, noice_util = pcall(require, "noice.util")
     if found then
@@ -310,42 +331,8 @@ M.config = function()
       vim.lsp.handlers["textDocument/hover"] = noice_util.protect(require("noice.lsp.hover").on_hover)
     end
   else
-    local float_config = {
-      focusable = true,
-      style = "minimal",
-      border = {
-        { "╔", "FloatBorder" },
-        { "═", "FloatBorder" },
-        { "╗", "FloatBorder" },
-        { "║", "FloatBorder" },
-        { "╝", "FloatBorder" },
-        { "═", "FloatBorder" },
-        { "╚", "FloatBorder" },
-        { "║", "FloatBorder" },
-      },
-    }
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_config)
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_config)
-  end
-
-  lvim.lsp.on_attach_callback = M.lsp_on_attach_callback
-
-  -- Lualine
-  -- =========================================
-  lvim.builtin.lualine.active = true
-  lvim.builtin.lualine.sections.lualine_b = { "branch" }
-
-  -- Mason
-  -- =========================================
-  lvim.builtin.mason.ui.icons = kind.mason
-
-  -- Noice
-  -- =========================================
-  if lvim.builtin.noice.active then
-    local found, noice_util = pcall(require, "noice.util")
-    if found then
-      vim.lsp.handlers["textDocument/signatureHelp"] = noice_util.protect(require("noice.lsp").signature)
-    end
+    vim.lsp.handlers["textDocument/hover"] = M.enhanced_float_handler(vim.lsp.handlers.hover)
+    vim.lsp.handlers["textDocument/signatureHelp"] = M.enhanced_float_handler(vim.lsp.handlers.signature_help)
   end
 
   -- NvimTree
@@ -359,9 +346,12 @@ M.config = function()
       error = kind.icons.error,
     },
   }
-  lvim.builtin.nvimtree.on_config_done = function(_)
-    lvim.builtin.which_key.mappings["e"] = { "<cmd>NvimTreeToggle<CR>", "󰀶 Explorer" }
+  if lvim.builtin.tree_provider == "nvimtree" then
+    lvim.builtin.nvimtree.on_config_done = function(_)
+      lvim.builtin.which_key.mappings["e"] = { "<cmd>NvimTreeToggle<CR>", "󰀶 Explorer" }
+    end
   end
+  -- lvim.builtin.nvimtree.hide_dotfiles = 0
 
   -- Project
   -- =========================================
@@ -388,13 +378,13 @@ M.config = function()
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
   local languages = vim.tbl_flatten {
-    { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-    { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
-    { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-    { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
-    { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
-    { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+    { "bash",       "c",               "c_sharp", "cmake",  "comment",    "cpp",    "css",        "d",    "dart" },
+    { "dockerfile", "elixir",          "elm",     "erlang", "fennel",     "fish",   "go",         "gomod" },
+    { "gomod",      "graphql",         "hcl",     "vimdoc", "html",       "java",   "javascript", "jsdoc" },
+    { "json",       "jsonc",           "julia",   "kotlin", "latex",      "ledger", "lua",        "make" },
+    { "markdown",   "markdown_inline", "nix",     "ocaml",  "perl",       "php",    "python" },
+    { "query",      "r",               "regex",   "rego",   "ruby",       "rust",   "scala",      "scss", "solidity" },
+    { "swift",      "teal",            "toml",    "tsx",    "typescript", "vim",    "vue",        "yaml", "zig" },
   }
   lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
@@ -707,7 +697,6 @@ M.codes = {
     message = " Try to use the correct types",
     "init_conversion_failed",
   },
-  message = " Remember the `;` or `,`",
   undeclared_variable = {
     message = " Have you delcared that variable somewhere?",
     "undeclared_var_use",
@@ -879,6 +868,77 @@ M.lsp_on_attach_callback = function(client, _)
     end
   end
   which_key.register(mappings, opts)
+end
+
+M.enhanced_float_handler = function(handler)
+  return function(err, result, ctx, config)
+    local buf, win = handler(
+      err,
+      result,
+      ctx,
+      vim.tbl_deep_extend("force", config or {}, {
+        border = "rounded",
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.4),
+      })
+    )
+
+    if not buf or not win then
+      return
+    end
+
+    -- Conceal everything.
+    vim.wo[win].concealcursor = "n"
+
+    -- Extra highlights.
+    for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+      for pattern, hl_group in pairs {
+        ["|%S-|"] = "@text.reference",
+        ["@%S+"] = "@parameter",
+        ["^%s*(Parameters:)"] = "@text.title",
+        ["^%s*(Return:)"] = "@text.title",
+        ["^%s*(See also:)"] = "@text.title",
+        ["{%S-}"] = "@parameter",
+      } do
+        local from = 1 ---@type integer?
+        while from do
+          local to
+          from, to = line:find(pattern, from)
+          if from then
+            vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+              end_col = to,
+              hl_group = hl_group,
+            })
+          end
+          from = to and to + 1 or nil
+        end
+      end
+    end
+
+    -- Add keymaps for opening links.
+    if not vim.b[buf].markdown_keys then
+      vim.keymap.set("n", "K", function()
+        -- Vim help links.
+        local url = (vim.fn.expand "<cWORD>" --[[@as string]]):match "|(%S-)|"
+        if url then
+          return vim.cmd.help(url)
+        end
+
+        -- Markdown links.
+        local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+        local from, to
+        from, to, url = vim.api.nvim_get_current_line():find "%[.-%]%((%S-)%)"
+        if from and col >= from and col <= to then
+          vim.system({ "open", url }, nil, function(res)
+            if res.code ~= 0 then
+              vim.notify("Failed to open URL" .. url, vim.log.levels.ERROR)
+            end
+          end)
+        end
+      end, { buffer = buf, silent = true })
+      vim.b[buf].markdown_keys = true
+    end
+  end
 end
 
 return M

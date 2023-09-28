@@ -70,7 +70,7 @@ Deserialization
 Deserializer
 DevOps
 Disqus
-Distros
+Distroless
 Divio
 Dockerfile
 Dockerfiles
@@ -79,10 +79,12 @@ Dockerized
 Dockerizing
 Dpl
 Dreamweaver
+Duqu
 EDR
 ETag
 Ecto
 Elasticsearch
+Ethereum
 Excon
 Exfiltrate
 Facebook
@@ -96,6 +98,7 @@ Floatline
 Flowdock
 Fluentd
 Forgerock
+Frontrunning
 Fugit
 Gantt
 Gemfile
@@ -129,10 +132,13 @@ Haswell
 Helm
 Heroku
 Herokuish
+Heuristical
 Hexo
 HipChat
+Hyperledger
 Iglu
 Immer
+Incentivized
 Ingress
 Inode
 Istio
@@ -187,10 +193,12 @@ Markdown
 Matomo
 Mattermost
 Memorystore
+Merkle
 Microsoft
 MinIO
 Minikube
 ModSecurity
+Monero
 Monokai
 Nanoc
 Neogen
@@ -212,12 +220,14 @@ Overcommit
 Packagist
 Patroni
 Pentest
+PentestMonkey
 PgBouncer
 Phabricator
 Pipfile
 Pipfiles
 Piwik
 Poedit
+Ponzi
 PostgreSQL
 Prettifier
 Pritaly
@@ -227,6 +237,7 @@ ProseMirror
 Puma
 Python
 Qualys
+Qubes
 Quicktime
 Rackspace
 Raspbian
@@ -241,6 +252,7 @@ Rubix
 Rubocop
 Rubular
 SIEM
+SQLi
 SSRF
 Salesforce
 Schemastore
@@ -269,6 +281,7 @@ Splunk
 SpotBugs
 Stackdriver
 Stackprof
+Stuxnet
 Superblock
 Sysbench
 TODO
@@ -361,6 +374,7 @@ blockquotes
 blockquoting
 boolean
 booleans
+bootkit
 browsable
 bufferline
 bugfix
@@ -408,6 +422,7 @@ crosslinked
 crosslinking
 crosslinks
 crt
+crypto
 cyber
 cybersecurity
 datasource
@@ -517,6 +532,7 @@ jasmine-jquery
 javascript
 jq
 jsdom
+json
 julia
 jumplist
 kanban
@@ -534,6 +550,7 @@ kubernetes
 lang
 ldapsearch
 libFuzzer
+libc
 lightspeed
 linter
 linters
@@ -552,6 +569,7 @@ luajit
 luasnip
 lunarvim
 lvim
+malloc
 markdownlint
 matcher
 matchers
@@ -735,6 +753,7 @@ serverless
 severities
 sharded
 sharding
+shellcode
 shfmt
 skippable
 smartcard
@@ -748,9 +767,14 @@ spidering
 sqlmap
 starrer
 starrers
+stdcall
+stderr
+stdin
+stdout
 storable
 storages
 strace
+strcpy
 strikethrough
 strikethroughs
 stunnel

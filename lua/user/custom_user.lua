@@ -36,9 +36,11 @@ M.config = function()
   }
   lvim.builtin.smooth_scroll = "cinnamon"
   lvim.builtin.tree_provider = "neo-tree"
-  lvim.builtin.noice.active = true
+  lvim.builtin.noice.active = false
   lvim.builtin.orgmode = true
+  lvim.builtin.harpoon.active = true
   lvim.builtin.go_programming.active = true
+  lvim.builtin.motion_provider = "flash"
   lvim.builtin.python_programming.active = true
   lvim.builtin.web_programming.active = true
   lvim.builtin.rust_programming.active = true
@@ -47,6 +49,7 @@ M.config = function()
   lvim.builtin.colored_args = true
   lvim.builtin.inlay_hints.active = true
   lvim.reload_config_on_save = false -- NOTE: i don't like this
+  lvim.builtin.sell_your_soul_to_devil.openai = true
   --  lvim.builtin.mind.active = true
   -- require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end

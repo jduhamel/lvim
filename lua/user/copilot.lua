@@ -31,7 +31,7 @@ M.config = function()
       keymap = {
         jump_next = "<c-j>",
         jump_prev = "<c-k>",
-        accept = "<c-l>",
+        accept = "<c-o>",
         refresh = "r",
         open = "<M-CR>",
       },
@@ -45,7 +45,7 @@ M.config = function()
       auto_trigger = true,
       debounce = 75,
       keymap = {
-        accept = "<c-l>",
+        accept = "<c-o>",
         accept_word = false,
         accept_line = false,
         next = "<c-j>",

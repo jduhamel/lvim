@@ -297,10 +297,10 @@ M.config = function()
       event = "BufReadPre",
     },
     {
-              "olimorris/persisted.nvim",
-              event = "BufReadPre",
-              lazy = true,
-              config = function()
+      "olimorris/persisted.nvim",
+      event = "BufReadPre",
+      lazy = true,
+      config = function()
         require("user.persist").config()
       end,
       enabled = lvim.builtin.persistence.active,
@@ -718,6 +718,7 @@ M.config = function()
       event = { "InsertEnter", "CursorHoldI" },
       enabled = lvim.builtin.winbar_provider == "treesitter",
     },
+    { "christoomey/vim-tmux-navigator", lazy = false },
     {
       "vimpostor/vim-tpipeline",
       enabled = lvim.builtin.tmux_lualine,
@@ -890,13 +891,14 @@ M.config = function()
       enabled = lvim.builtin.mind.active,
     },
     { "vlime/vlime", rtp = "vim/" },
-    {    "ibhagwan/fzf-lua",
-         config = function()
-           -- calling `setup` is optional for customization
-           local ff = require "user.fzf"
-           require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
-         end,
-         enabled = not lvim.builtin.telescope.active,
+    {
+      "ibhagwan/fzf-lua",
+      config = function()
+        -- calling `setup` is optional for customization
+        local ff = require "user.fzf"
+        require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
+      end,
+      enabled = not lvim.builtin.telescope.active,
     },
     {
       "folke/flash.nvim",
@@ -942,7 +944,7 @@ M.config = function()
             group = "SpecialComment",
           },
         }
-      end
+      end,
     },
     {
       "dstein64/vim-startuptime",

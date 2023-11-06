@@ -5,8 +5,9 @@ vim.g.python3_host_prog = "/usr/bin/python"
 vim.g.vlime_leader = "/"
 lvim.leader = " "
 lvim.localleader = ","
-lvim.colorscheme = "tokyonight" -- set to a custom theme
-lvim.builtin.time_based_themes = true -- set false to use your own configured theme
+-- lvim.colorscheme = "tokyonight" -- set to a custom theme
+lvim.colorscheme = "night-owl" -- set to a custom theme
+lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
 lvim.debug = false
 vim.lsp.set_log_level "error"
@@ -19,7 +20,7 @@ vim.diagnostic.config { virtual_text = true }
 
 -- Customization
 -- =========================================
-lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false , openai = false} -- if you want microsoft to abuse your soul
+lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
@@ -80,7 +81,7 @@ lvim.builtin.colored_args = true -- if true then sets up hlargs.nvim
 lvim.builtin.bigfile.active = true
 lvim.builtin.inlay_hints = { active = true } -- enable/disable inlay hints
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
-lvim.builtin.inlay_hints =  {active = true }--lvim.builti
+lvim.builtin.inlay_hints = { active = true } --lvim.builti
 
 -- Custom User Config
 -- =========================================

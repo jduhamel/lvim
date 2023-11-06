@@ -6,17 +6,14 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
-    -- {
-    --   "folke/tokyonight.nvim",
-    --   config = function()
-    --     require("user.theme").tokyonight()
-    --     vim.cmd [[colorscheme tokyonight]]
-    --   end,
-    --   cond = function()
-    --     local _time = os.date "*t"
-    --     return (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes
-    --   end,
-    -- },
+    {
+      "oxfist/night-owl.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.cmd.colorscheme "night-owl"
+      end,
+    },
     { "folke/neodev.nvim" },
     {
       "allaman/kustomize.nvim",

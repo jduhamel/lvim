@@ -933,6 +933,15 @@ M.config = function()
       enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     },
     {
+      url = "https://codeberg.org/esensar/nvim-dev-container",
+      dependencies = "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require("devcontainer").setup {
+          generate_commands = true,
+        }
+      end,
+    },
+    {
       "james1236/backseat.nvim",
       config = function()
         require("backseat").setup {

@@ -338,7 +338,7 @@ M.config = function()
   --    d = { "<cmd>DiffviewOpen<cr>", "diffview: diff HEAD" },
   --    h = { "<cmd>DiffviewFileHistory<cr>", "diffview: filehistory" },
   --  }
-  lvim.builtin.which_key.mappings["I"] = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", " Toggle Inlay" }
+  lvim.builtin.which_key.mappings["I"] = { "<cmd>lua require('user.neovim').inlay_hints()<cr>", " Toggle Inlay" }
   lvim.builtin.which_key.mappings.l.name = " LSP"
   lvim.builtin.which_key.mappings["f"] = {
     require("user.telescope").find_project_files,

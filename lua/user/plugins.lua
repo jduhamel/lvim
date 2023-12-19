@@ -961,6 +961,14 @@ M.config = function()
         vim.g.startuptime_tries = 10
       end,
     },
+    {
+      "Wansmer/symbol-usage.nvim",
+      event = 'LspAttach',
+      enabled = lvim.builtin.symbols_usage.active,
+      config = function()
+        require("user.symbol_use").config()
+      end,
+    }
   }
 end
 

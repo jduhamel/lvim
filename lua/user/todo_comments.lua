@@ -18,8 +18,13 @@ M.config = function()
       ERROR = { icon = icons.ERROR, color = "error", alt = { "ERR" } },
       REFS = { icon = icons.REFS },
       SAFETY = {icon = icons.SHIELD, color = "hint"},
+      audit = { icon = icons.WARN, color = "warning"  },
     },
-    highlight = { max_line_len = 120 },
+    highlight = { max_line_len = 120,
+                pattern = {
+                  [[.*<(KEYWORDS)\s*:]], [[\/\/.+(audit)\s+]]
+                },
+    },
     colors = {
       error = { "DiagnosticError" },
       warning = { "DiagnosticWarn" },

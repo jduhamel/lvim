@@ -19,6 +19,7 @@ M.config = function()
   lvim.builtin.custom_web_devicons = false
   lvim.use_icons = true -- only set to false if you know what are you doing
   lvim.builtin.sell_your_soul_to_devil = { active = true, prada = true }
+  lvim.builtin.symbols_usage = { active = true }
   lvim.lsp.document_highlight = false
   lvim.builtin.task_runner = "async_tasks"
   lvim.builtin.dap.active = true

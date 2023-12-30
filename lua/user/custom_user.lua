@@ -18,7 +18,8 @@ M.config = function()
   end
   lvim.builtin.custom_web_devicons = false
   lvim.use_icons = true -- only set to false if you know what are you doing
-  lvim.builtin.sell_your_soul_to_devil = { active = true, prada = true }
+  lvim.builtin.sell_your_soul_to_devil.active = true
+  lvim.builtin.sell_your_soul_to_devil.prada = true
   lvim.builtin.symbols_usage = { active = true }
   lvim.lsp.document_highlight = false
   lvim.builtin.task_runner = "async_tasks"
@@ -40,6 +41,7 @@ M.config = function()
   lvim.builtin.noice.active = false
   lvim.builtin.orgmode = true
   lvim.builtin.harpoon.active = true
+  lvim.builtin.sell_your_soul_to_devil.openai = true
   lvim.builtin.go_programming.active = true
   lvim.builtin.motion_provider = "flash"
   lvim.builtin.python_programming.active = true

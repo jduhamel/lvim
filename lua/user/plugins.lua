@@ -255,9 +255,9 @@ M.config = function()
       ft = "markdown",
     },
     {
-      "simrat39/rust-tools.nvim",
-      lazy = true,
-      config = function()
+      "mrcjkb/rustaceanvim",
+      version = "^3",
+      init = function()
         require("user.rust_tools").config()
       end,
       ft = { "rust", "rs" },

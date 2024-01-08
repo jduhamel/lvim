@@ -11,7 +11,7 @@ M.config = function()
       executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
       reload_workspace_from_cargo_toml = true,
       inlay_hints = {
-        auto = not lvim.builtin.inlay_hints.active,
+        auto = true,
         only_current_line = false,
         show_parameter_hints = true,
         parameter_hints_prefix = "<-",
@@ -41,16 +41,12 @@ M.config = function()
         require("lvim.lsp").common_on_attach(client, bufnr)
       end,
       on_init = require("lvim.lsp").common_on_init,
+      capabilities = require("lvim.lsp").common_capabilities(),
       settings = {
         ["rust-analyzer"] = {
           inlayHints = { locationLinks = false },
           lens = {
             enable = true,
-            methodReferences = true,
-            implementations = true,
-            run = true,
-            debug = true,
-            showOn = "hover",
           },
           checkOnSave = {
             enable = true,
